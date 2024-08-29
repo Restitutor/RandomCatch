@@ -80,7 +80,7 @@ async def on_message(message):
             await inventories.add_item(message.author.id, key, 1)
             del last_catchable[message.channel.id]
 
-    if random.random() < 0.5:
+    if random.random() < 0.1:
         key = random.choice(list(catchables.keys()))
         last_catchable[message.channel.id] = key
         print("Dropped", key, catchables[key], "in", message.channel.id)
