@@ -65,7 +65,7 @@ async def on_message(message):
                 name = catchables[k][0]
                 out += f"{k} -> **{name}**: {v}\n"
 
-            await message.reply(out[:2000])
+            await message.reply(out[:1999])
         else:
             await message.reply("Your inventory is empty! Catch more math objects!")
         return
