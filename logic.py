@@ -1,13 +1,13 @@
 def restart_program() -> None:
-    """Restarts the current program using execv.
-    """
+    """Restarts the current program using execv."""
     print("Restarting the program...")
 
     import os
     import sys
 
     os.execv(
-        sys.executable, [sys.executable] + sys.argv,
+        sys.executable,
+        [sys.executable] + sys.argv,
     )  # List combining executable and script arguments
 
 

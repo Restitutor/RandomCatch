@@ -34,7 +34,8 @@ async def add_item(user: int, item: str, quantity: int) -> None:
 async def list_items(user: int) -> dict[str, int]:
     async with aiosqlite.connect(DATABASE) as db:
         async with db.execute(
-            "SELECT Item, Quantity FROM inventories WHERE User = ?", (user,),
+            "SELECT Item, Quantity FROM inventories WHERE User = ?",
+            (user,),
         ) as cursor:
             rows = await cursor.fetchall()
             return {row[0]: row[1] for row in rows}

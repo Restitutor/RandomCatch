@@ -17,6 +17,7 @@ bot = discord.Bot(
 )
 
 # Channel to ID
+channels = set()  # For random drops
 last_catchable: dict[str, str] = {}
 catchables = read_csv("data.csv")
 
@@ -47,6 +48,8 @@ async def on_message(message):
     if message.author.bot or type(message.author) is not discord.member.Member:
         return
 
+    channels.add(message.channel)
+
     text = message.clean_content
 
     if "!help" in text:
@@ -62,8 +65,11 @@ async def on_message(message):
         if items:
             out = "Your Inventory\n"
             for k, v in items.items():
-                name = catchables[k][0]
-                out += f"{k} -> **{name}**: {v}\n"
+                try:
+                    name = catchables[k][0]
+                    out += f"{k} -> **{name}**: {v}\n"
+                except Exception as e:
+                    print(e)
 
             await message.reply(out[:1999])
         else:
@@ -80,14 +86,10 @@ async def on_message(message):
             await inventories.add_item(message.author.id, key, 1)
             del last_catchable[message.channel.id]
 
-    if random.random() < 0.1:
-        key = random.choice(list(catchables.keys()))
-        last_catchable[message.channel.id] = key
-        print("Dropped", key, catchables[key], "in", message.channel.id)
-        await message.reply(
-            f"A new Math object dropped! `{key}`. Catch it by saying its name!",
-        )
-        # Catch event
+    # Catch event
+    if random.random() < 0.01:
+        msg = drop(message.channel.id)
+        await message.reply(msg)
 
     user = message.author.id
     if "updatebot" in text:
@@ -100,10 +102,28 @@ async def on_message(message):
         return
 
 
+def drop(channel_id) -> str:
+    key = random.choice(list(catchables.keys()))
+    last_catchable[channel_id] = key
+    print("Dropped", key, catchables[key], "in", channel_id)
+    return f"A new Math object dropped! `{key}`. Catch it by saying its name!"
+
+
 @bot.event
 async def on_ready():
     await inventories.create_table()
     print("Started")
+    await randomDrop()
 
 
-bot.run("TOKEN")
+async def randomDrop():
+    while True:
+        await asyncio.sleep(6)
+        if channels:
+            channel = random.choice(list(channels))
+            msg = drop(channel.id)
+            await channel.send(msg)
+
+
+with open("token") as f:
+    bot.run(f.read().strip())
