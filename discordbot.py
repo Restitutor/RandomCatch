@@ -17,13 +17,15 @@ bot = discord.Bot(
 )
 
 # Channel to ID
-channels = set()  # For random drops
+ALLOWED_CHANNELS = (1211674089073279106,)
+
 last_catchable: dict[str, str] = {}
 catchables = read_csv("data.csv")
 
 CYCY = 1168452148049231934
 RES = 459147358463197185
 ADMINS = {CYCY, RES}
+RANDOM_DROP_TIME = 600
 
 
 async def run_git_pull() -> str:
@@ -48,8 +50,6 @@ async def on_message(message):
     if message.author.bot or type(message.author) is not discord.member.Member:
         return
 
-    channels.add(message.channel)
-
     text = message.clean_content
 
     if "!help" in text:
@@ -62,12 +62,16 @@ async def on_message(message):
 
     if "inventory" in text:
         items = await inventories.list_items(message.author.id)
+        print(items)
         if items:
             out = "Your Inventory\n"
-            for k, v in items.items():
+            for k, names in catchables.items():
+                if k not in items:
+                    continue
+
                 try:
-                    name = catchables[k][0]
-                    out += f"{k} -> **{name}**: {v}\n"
+                    name = names[0]
+                    out += f"{k} -> **{name}**: {items[k]}\n"
                 except Exception as e:
                     print(e)
 
@@ -87,11 +91,11 @@ async def on_message(message):
             del last_catchable[message.channel.id]
 
     # Catch event
-    if random.random() < 0.01:
+    user = message.author.id
+    if random.random() < 0.1 or (user in ADMINS and "-summon" in text):
         msg = drop(message.channel.id)
         await message.reply(msg)
 
-    user = message.author.id
     if "updatebot" in text:
         if user in ADMINS:
             status = await run_git_pull()
@@ -113,16 +117,18 @@ def drop(channel_id) -> str:
 async def on_ready():
     await inventories.create_table()
     print("Started")
+    await bot.wait_until_ready()
     await randomDrop()
 
 
 async def randomDrop():
     while True:
-        await asyncio.sleep(6)
-        if channels:
-            channel = random.choice(list(channels))
-            msg = drop(channel.id)
+        if ALLOWED_CHANNELS:
+            channel_id = random.choice(ALLOWED_CHANNELS)
+            channel = await bot.fetch_channel(channel_id)  # Load into cache
+            msg = drop(channel_id)
             await channel.send(msg)
+        await asyncio.sleep(RANDOM_DROP_TIME)
 
 
 with open("token") as f:
