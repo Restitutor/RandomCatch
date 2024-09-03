@@ -83,7 +83,7 @@ async def on_message(message):
     
     if "completion" in text:
         items = await inventories.list_items(message.author.id)
-        await message.reply(f"You have {len(items)}, which is {math.floor(len(items/1000*(len(catchables))})/100}%")
+        await message.reply(f"You have {len(items)}, which is {math.floor(len(items/1000*(len(catchables))))}/100%")
 
     # Check catch first
     if message.channel.id in last_catchable:
