@@ -92,7 +92,7 @@ async def on_message(message):
 
     # Catch event
     user = message.author.id
-    if random.random() < 0.1 or (user in ADMINS and "-summon" in text):
+    if random.random() < 0.02 or (user in ADMINS and "-summon" in text):
         msg = drop(message.channel.id)
         await message.reply(msg)
 
