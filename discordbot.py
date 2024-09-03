@@ -6,6 +6,7 @@ import random
 
 import discord
 
+import math
 import inventories
 import logic
 from reader import read_csv
@@ -79,6 +80,10 @@ async def on_message(message):
         else:
             await message.reply("Your inventory is empty! Catch more math objects!")
         return
+    
+    if "completion" in text:
+        items = await inventories.list_items(message.author.id)
+        await.message.reply(f"You have {len(items)}, which is {math.floor(len(items/1000*(len(catchables))})/100}%")
 
     # Check catch first
     if message.channel.id in last_catchable:
