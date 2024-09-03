@@ -85,7 +85,7 @@ async def on_message(message):
         items = await inventories.list_items(message.author.id)
         count = len(items)
         await message.reply(
-            f"You have {count}, which is {round(count*100/len(catchables), 2)}%"
+            f"You have {count} items, which is {round(count*100/len(catchables), 2)}%"
         )
 
     # Check catch first
