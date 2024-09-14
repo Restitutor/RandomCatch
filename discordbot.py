@@ -87,7 +87,7 @@ async def on_message(message):
         await message.reply(
             f"You have {count} items, so your MathDex progression is {round(count*100/len(catchables), 2)}%"
         )
-    async def completionother(ctx, arg):
+    async def completiother(ctx, arg):
         items = await inventories.list_items(arg)
         count = len(items)
         await message.reply(
