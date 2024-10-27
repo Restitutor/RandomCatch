@@ -63,10 +63,16 @@ async def on_message(message):
         return
 
     if "inventory" in text:
-        items = await inventories.list_items(message.author.id)
-        print(items)
+        for m in message.mentions:
+            if type(m) is discord.member.Member:
+                user_id = m.id
+                break
+        else:
+            user_id = message.author.id
+
+        items = await inventories.list_items(user_id)
         if items:
-            out = "Your Inventory\n"
+            out = "Inventory\n"
             for k, names in catchables.items():
                 if k not in items:
                     continue
@@ -79,7 +85,7 @@ async def on_message(message):
 
             await message.reply(out[:1999])
         else:
-            await message.reply("Your inventory is empty! Catch more math objects!")
+            await message.reply("Inventory is empty! Catch more math objects!")
         return
 
     if "completion" in text:
@@ -88,12 +94,14 @@ async def on_message(message):
         await message.reply(
             f"You have {count} items, so your MathDex progression is {round(count*100/len(catchables), 2)}%"
         )
+
     async def completiother(ctx, arg):
         items = await inventories.list_items(arg)
         count = len(items)
         await message.reply(
             f"<@{arg}> has {count} items, so his/hers/its/their MathDex progression is {round(count*100/len(catchables), 2)}%"
         )
+
     # Check catch first
     if message.channel.id in last_catchable:
         key = last_catchable[message.channel.id]

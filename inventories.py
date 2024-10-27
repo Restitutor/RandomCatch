@@ -43,8 +43,6 @@ async def list_items(user: int) -> dict[str, int]:
 
 async def main() -> None:
     await create_table()
-    await add_item(1, "Widget", 10)
-    await add_item(1, "Gadget", 5)
     items = await list_items(1)
     print(f"User 1's Inventory: {items}")
 
