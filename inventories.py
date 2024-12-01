@@ -7,14 +7,16 @@ DATABASE = "inventory.db"
 
 async def create_table() -> None:
     async with aiosqlite.connect(DATABASE) as db:
-        await db.execute("""
+        await db.execute(
+            """
             CREATE TABLE IF NOT EXISTS inventories (
                 User INTEGER,
                 Item TEXT,
                 Quantity INTEGER,
                 PRIMARY KEY (User, Item)
             )
-        """)
+        """
+        )
         await db.commit()
 
 
@@ -41,12 +43,9 @@ async def list_items(user: int) -> dict[str, int]:
             return {row[0]: row[1] for row in rows}
 
 
-async def main() -> None:
-    await create_table()
-    items = await list_items(1)
-    print(f"User 1's Inventory: {items}")
-
-
-# Run the main function as the entry point
-if __name__ == "__main__":
-    asyncio.run(main())
+async def prune_item(catchables: list[str]) -> None:
+    # Not safe
+    sql = f"delete from inventories where Item not in {catchables}"
+    async with aiosqlite.connect(DATABASE) as db:
+        await db.execute(sql)
+        await db.commit()

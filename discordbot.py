@@ -45,6 +45,50 @@ async def run_git_pull() -> str:
     return stdout.decode().strip()
 
 
+async def list_remaining(user) -> str:
+    inv = await inventories.list_items(user)
+    items = sorted(set(catchables) - set(inv))
+    if items:
+        out = "Remaining\n`" + ", ".join(items) + "`"
+        return out[:1999]
+    else:
+        return "You caught everything!"
+
+
+async def list_inventory(user) -> str:
+    items = await inventories.list_items(user)
+    if items:
+        out = f"Inventory\n"
+        for k, names in catchables.items():
+            if k not in items:
+                continue
+
+            try:
+                name = names[0]
+                out += f"{k} -> **{name}**: {items[k]}\n"
+            except Exception as e:
+                print(e)
+
+        return out[:1999]
+    else:
+        return "Inventory is empty! Catch more math objects!"
+
+
+async def list_completion(user: str) -> str:
+    print("completion", user)
+    items = await inventories.list_items(user)
+    count = len(items)
+    return f"They have {count} items, so their MathDex progression is {round(count*100/len(catchables), 2)}%"
+
+
+def get_user_id(message) -> str:
+    for u in message.mentions:
+        if type(u) is discord.member.Member and not u.bot:
+            return u.id
+    else:
+        return message.author.id
+
+
 @bot.event
 async def on_message(message):
     # Limit to people in guilds
@@ -61,45 +105,16 @@ async def on_message(message):
         await message.reply(f"There are {len(catchables)} to catch!")
         return
 
-    if "inventory" in text:
-        for m in message.mentions:
-            if type(m) is discord.member.Member:
-                user_id = m.id
-                break
+    if "inventory" in text or "completion" in text or "remaining" in text:
+        if "inventory" in text:
+            action = list_inventory
+        elif "remaining" in text:
+            action = list_remaining
         else:
-            user_id = message.author.id
+            action = list_completion
 
-        items = await inventories.list_items(user_id)
-        if items:
-            out = "Inventory\n"
-            for k, names in catchables.items():
-                if k not in items:
-                    continue
-
-                try:
-                    name = names[0]
-                    out += f"{k} -> **{name}**: {items[k]}\n"
-                except Exception as e:
-                    print(e)
-
-            await message.reply(out[:1999])
-        else:
-            await message.reply("Inventory is empty! Catch more math objects!")
+        await message.reply(await action(get_user_id(message)))
         return
-
-    if "completion" in text:
-        items = await inventories.list_items(message.author.id)
-        count = len(items)
-        await message.reply(
-            f"You have {count} items, so your MathDex progression is {round(count*100/len(catchables), 2)}%"
-        )
-
-    async def completiother(ctx, arg):
-        items = await inventories.list_items(arg)
-        count = len(items)
-        await message.reply(
-            f"<@{arg}> has {count} items, so his/hers/its/their MathDex progression is {round(count*100/len(catchables), 2)}%"
-        )
 
     # Check catch first
     if message.channel.id in last_catchable:
@@ -127,6 +142,39 @@ async def on_message(message):
         return
 
 
+@bot.command()
+# pycord will figure out the types for you
+async def add(ctx, first: discord.Option(int), second: discord.Option(int)):
+    # you can use them as they were actual integers
+    sum = first + second
+    await ctx.respond(f"The sum of {first} and {second} is {sum}.")
+
+
+@bot.command()
+async def inventory(ctx, user: discord.Option(discord.SlashCommandOptionType.user)):
+    print("inventory")
+    if user.bot:
+        await ctx.respond("That's a bot.")
+    else:
+        await ctx.respond(await list_inventory(user.id))
+
+
+@bot.command()
+async def completion(ctx, user: discord.Option(discord.SlashCommandOptionType.user)):
+    if user.bot:
+        await ctx.respond("That's a bot.")
+    else:
+        await ctx.respond(await list_completion(user.id))
+
+
+@bot.command()
+async def remaining(ctx, user: discord.Option(discord.SlashCommandOptionType.user)):
+    if user.bot:
+        await ctx.respond("That's a bot.")
+    else:
+        await ctx.respond(await list_remaining(user.id))
+
+
 def drop(channel_id) -> str:
     key = random.choice(list(catchables.keys()))
     last_catchable[channel_id] = key
@@ -137,6 +185,7 @@ def drop(channel_id) -> str:
 @bot.event
 async def on_ready():
     await inventories.create_table()
+    await inventories.prune_item(tuple(catchables))
     print("Started")
     await bot.wait_until_ready()
     await randomDrop()
@@ -152,5 +201,6 @@ async def randomDrop():
         await asyncio.sleep(RANDOM_DROP_TIME)
 
 
-with open("token") as f:
-    bot.run(f.read().strip())
+if __name__ == "__main__":
+    with open("token") as f:
+        bot.run(f.read().strip())
