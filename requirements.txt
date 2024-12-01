@@ -1,2 +1,2 @@
 aiosqlite
-pycord
+py-cord
