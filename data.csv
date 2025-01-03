@@ -119,19 +119,21 @@
 ℤ-,NonPositive Integers Set,sets
 ℤ-*,Negative Integers Set,sets
 ℤ[i],Gaussian Integers Set,sets
+0.011010100...,Prime Constant (Binary),constants
 0.123456789...,Champernowne Constant,constants
-0.235711131...,The Copeland-Erdos Constant,constants
 0.149162536...,Squares (Besicovitch),constants
+0.235711131...,The Copeland-Erdos Constant,constants
+0.414682509...,Prime Constant (Decimal),constants
+0.567143290...,Omega Constant,constants
+0.915965594...,Catalan's Constant,constants
+1.202056903...,Apery's Constant,constants
+1.465571231...,Supergolden Ratio,constants
 1.618033988...,Golden Ratio,constants
+1.839286755...,Tribonacci Constant,constants
+2.414213562...,Silver Ratio,constants
 2.718781845...,Euler's Number,constants
 3.141592653...,Pi,constants
 6.283185306...,Tau,constants
-0.567143290...,Omega Constant,constants
-0.011010100...,Prime Constant (Binary),constants
-1.465571231...,Supergolden Ratio,constants
-0.414682509...,Prime Constant (Decimal),constants
-2.414213562...,Silver Ratio,constants
-1.839286755...,Tribonacci Constant,constants
 σ(n),Sigma Function,functions
 s(n),Aliquot sum,functions
 sin(n),Sine,functions
