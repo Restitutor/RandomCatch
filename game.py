@@ -58,13 +58,17 @@ def try_catch(
     return out, False
 
 
-def drop(channel_id: int, catchables: Dict[str, Tuple[str, ...]]) -> Tuple[str, str]:
+async def drop(
+    channel_id: int, catchables: Dict[str, Tuple[str, ...]], user_id: int = None
+) -> Tuple[str, str]:
     """
-    Drops a random catchable item in the channel.
+    Drops a catchable item in the channel, with higher probability for items
+    not in the user's inventory when a user_id is provided.
 
     Args:
         channel_id: Discord channel ID
         catchables: Dictionary of catchable items
+        user_id: Optional user ID to consider inventory for weighted selection
 
     Returns:
         Tuple of (message, key)
@@ -73,7 +77,51 @@ def drop(channel_id: int, catchables: Dict[str, Tuple[str, ...]]) -> Tuple[str, 
         logger.error("No catchables available for dropping")
         return "Error: No catchables available!", ""
 
-    key = random.choice(list(catchables.keys()))
+    # If no user_id provided or can't get inventory, fall back to random selection
+    if user_id is None:
+        key = random.choice(list(catchables.keys()))
+    else:
+        try:
+            # Get user's current inventory
+            inventory = await db.list_items(user_id)
+
+            # Split items into two lists: new items and duplicates
+            new_items = [item for item in catchables.keys() if item not in inventory]
+            duplicate_items = [item for item in catchables.keys() if item in inventory]
+
+            # Handle edge cases
+            if not new_items:
+                # No new items available, choose from duplicates
+                key = random.choice(list(catchables.keys()))
+                logger.info(
+                    f"No new items available, dropped '{key}' for user {user_id}"
+                )
+            elif not duplicate_items:
+                # No duplicates (new user), always drop a new item
+                key = random.choice(new_items)
+                logger.info(f"New user, dropped new item '{key}' for user {user_id}")
+            else:
+                # Calculate probability based on % of items that are new with minimum 20% chance
+                probability = max(len(new_items) / len(catchables), 0.2)
+
+                # Weighted selection based on calculated probability
+                if random.random() < probability:
+                    key = random.choice(new_items)
+                    logger.info(
+                        f"Dropped new item '{key}' for user {user_id} (prob: {probability:.2f})"
+                    )
+                else:
+                    key = random.choice(duplicate_items)
+                    logger.info(
+                        f"Dropped duplicate item '{key}' for user {user_id} (prob: {probability:.2f})"
+                    )
+        except Exception as e:
+            # On any error, fall back to completely random selection
+            logger.error(
+                f"Error in weighted item selection: {e}, falling back to random"
+            )
+            key = random.choice(list(catchables.keys()))
+
     logger.info(f"Dropped '{key}' in channel {channel_id}")
     return f"A new Math object dropped! `{key}`. Catch it by saying its name!", key
 

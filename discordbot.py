@@ -13,13 +13,7 @@ import discord
 import game
 import db
 import utils
-from config import (
-    TOKEN,
-    ALLOWED_CHANNELS,
-    ADMIN_IDS,
-    RANDOM_DROP_TIME,
-    RANDOM_DROP_CHANCE,
-)
+from config import TOKEN, ALLOWED_CHANNELS, ADMIN_IDS, RANDOM_DROP_TIME, RANDOM_DROP_CHANCE
 from utils import logger
 
 # Bot setup
@@ -33,23 +27,21 @@ bot = discord.Bot(
 catchables = {}
 last_catchable: Dict[int, str] = {}
 
-
 def get_user_id(message) -> int:
     """
     Gets the user ID from a message, prioritizing mentioned users.
-
+    
     Args:
         message: Discord message
-
+        
     Returns:
         User ID
     """
     for u in message.mentions:
         if isinstance(u, discord.member.Member) and not u.bot:
             return u.id
-
+    
     return message.author.id
-
 
 @bot.event
 async def on_ready():
@@ -58,33 +50,32 @@ async def on_ready():
     Initializes database and starts random drop task.
     """
     global catchables
-
+    
     logger.info(f"Logged in as {bot.user} (ID: {bot.user.id})")
-
+    
     try:
         # Load catchables
         catchables = game.load_catchables()
         logger.info(f"Loaded {len(catchables)} catchable items")
-
+        
         # Initialize database
         await db.create_table()
         await db.prune_item(tuple(catchables))
-
+        
         # Start random drop task
         await bot.wait_until_ready()
         asyncio.create_task(random_drop())
-
+        
         logger.info("Bot is fully initialized and ready")
     except Exception as e:
         logger.error(f"Error during initialization: {e}")
-
 
 @bot.event
 async def on_message(message):
     """
     Processes incoming messages.
     Handles commands and catching mechanics.
-
+    
     Args:
         message: Discord message
     """
@@ -95,12 +86,10 @@ async def on_message(message):
     try:
         text = message.clean_content
         user = message.author.id
-
+        
         # Help command
         if "!help" in text:
-            await message.reply(
-                "Available commands: countobjects, inventory, completion, remaining"
-            )
+            await message.reply("Available commands: countobjects, inventory, completion, remaining")
             return
 
         # Count objects command
@@ -116,7 +105,7 @@ async def on_message(message):
                 response = await game.list_remaining(get_user_id(message), catchables)
             else:
                 response = await game.list_completion(get_user_id(message), catchables)
-
+                
             await message.reply(response)
             return
 
@@ -124,19 +113,17 @@ async def on_message(message):
         if message.channel.id in last_catchable:
             key = last_catchable[message.channel.id]
             out, caught = game.try_catch(key, catchables[key], text)
-
+            
             if out:
                 await message.reply(out)
-
+                
             if caught:
                 await db.add_item(message.author.id, key, 1)
                 del last_catchable[message.channel.id]
 
         # Random drop chance on message
-        if random.random() < RANDOM_DROP_CHANCE or (
-            user in ADMIN_IDS and "-summon" in text
-        ):
-            msg, key = game.drop(message.channel.id, catchables)
+        if random.random() < RANDOM_DROP_CHANCE or (user in ADMIN_IDS and "-summon" in text):
+            msg, key = await game.drop(message.channel.id, catchables, message.author.id)
             last_catchable[message.channel.id] = key
             await message.reply(msg)
 
@@ -148,17 +135,16 @@ async def on_message(message):
                 utils.restart_program()
             else:
                 await message.reply("You are not an admin.")
-
+                
     except Exception as e:
         logger.error(f"Error processing message: {e}")
         # Don't respond to the user with the error to avoid confusion
-
 
 @bot.command()
 async def inventory(ctx, user: discord.Option(discord.SlashCommandOptionType.user)):
     """
     Slash command to view a user's inventory.
-
+    
     Args:
         ctx: Command context
         user: User to view inventory for
@@ -172,12 +158,11 @@ async def inventory(ctx, user: discord.Option(discord.SlashCommandOptionType.use
         logger.error(f"Error executing inventory command: {e}")
         await ctx.respond("An error occurred while retrieving the inventory.")
 
-
 @bot.command()
 async def completion(ctx, user: discord.Option(discord.SlashCommandOptionType.user)):
     """
     Slash command to view a user's completion percentage.
-
+    
     Args:
         ctx: Command context
         user: User to view completion for
@@ -191,11 +176,8 @@ async def completion(ctx, user: discord.Option(discord.SlashCommandOptionType.us
         logger.error(f"Error executing completion command: {e}")
         await ctx.respond("An error occurred while calculating completion.")
 
-
 @bot.command()
 async def remaining(ctx, user: discord.Option(discord.SlashCommandOptionType.user)):
-    await ctx.respond("hi")
-    return
     """
     Slash command to view items a user hasn't caught yet.
     
@@ -212,30 +194,28 @@ async def remaining(ctx, user: discord.Option(discord.SlashCommandOptionType.use
         logger.error(f"Error executing remaining command: {e}")
         await ctx.respond("An error occurred while retrieving remaining items.")
 
-
 async def random_drop():
     """
     Task that periodically drops random items in allowed channels.
     """
     logger.info("Starting random drop task")
-
+    
     while True:
         try:
             if ALLOWED_CHANNELS:
                 channel_id = random.choice(ALLOWED_CHANNELS)
                 channel = await bot.fetch_channel(channel_id)
-
-                msg, key = game.drop(channel_id, catchables)
+                
+                msg, key = await game.drop(channel_id, catchables)
                 last_catchable[channel_id] = key
-
+                
                 await channel.send(msg)
                 logger.info(f"Random drop in channel {channel_id}: {key}")
-
+            
             await asyncio.sleep(RANDOM_DROP_TIME)
         except Exception as e:
             logger.error(f"Error in random drop task: {e}")
             await asyncio.sleep(60)  # Wait a bit before retrying
-
 
 if __name__ == "__main__":
     try:
