@@ -5,7 +5,7 @@ Handles the core game logic including catching and dropping items.
 """
 
 import random
-from typing import Dict, Tuple, Optional, List
+from typing import Dict, Tuple, Optional
 
 from config import DATA_FILE
 import db
@@ -164,7 +164,7 @@ async def list_inventory(user: int, catchables: Dict[str, Tuple[str, ...]]) -> s
     try:
         items = await db.list_items(user)
         if items:
-            out = f"Inventory\n"
+            out = "Inventory\n"
             for k, names in catchables.items():
                 if k not in items:
                     continue

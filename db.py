@@ -4,9 +4,7 @@ Database operations for the Discord math catch bot.
 Handles inventory management and database interactions.
 """
 
-import asyncio
-import logging
-from typing import Dict, List, Tuple, Set, Any, Optional
+from typing import Dict, Tuple
 
 import aiosqlite
 from config import DATABASE
