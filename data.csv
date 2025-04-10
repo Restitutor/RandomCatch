@@ -222,7 +222,7 @@ arcThi(n),integral hyperbolic arctangent,functions
 crd,chord,functions
 ccd,cochord,functions
 acrd,antichord,functions
-accd,cochord,functions
+accd,anticochord,functions
 f'(x),derivative,functions
 f^-1(x),inverse,functions
 ln(x),natural logarithm,functions
