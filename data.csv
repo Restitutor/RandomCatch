@@ -187,18 +187,26 @@ arctanhc(n),cardinal hyperbolic arctangent,functions
 arccothc(n),cardinal hyperbolic arccotangent,functions
 arcsechc(n),cardinal hyperbolic arcsecant,functions
 arccschc(n),cardinal hyperbolic arccosecant,functions
-vers(n),versine,functions
-verc(n),vercosine,functions
-covers(n),coversine,functions
-coverc(n),covercosine,functions
-exsec(n),exsecant,functions
-excsc(n),excosecant,functions
-arcvers(n),arcversine,functions
-arcverc(n),arcvercosine,functions
-arccovers(n),arccoversine,functions
-arccoverc(n),arccovercosine,functions
-arcexsec(n),arcexsecant,functions
-arcexcsc(n),arcexcosecant,functions
+ver(n),versine,functions
+vcs(n),vercosine,functions
+cvr(n),coversine,functions
+cvc(n),covercosine,functions
+xsc(n),exsecant,functions
+xcs(n),excosecant,functions
+arcver(n),arcversine,functions
+arcvcs(n),arcvercosine,functions
+arccvr(n),arccoversine,functions
+arccvc(n),arccovercosine,functions
+arcxsc(n),arcexsecant,functions
+arcxcs(n),arcexcosecant,functions
+hver(n),haversine,functions
+hvcs(n),havercosine,functions
+hcvr(n),hacoversine,functions
+hcvc(n),hacovercosine,functions
+archver(n),archaversine,functions
+archvcs(n),archavercosine,functions
+archcvr(n),archacoversine,functions
+archcvc(n),archacovercosine,functions
 Si(n),integral sine,functions
 Ci(n),integral cosine,functions
 Ti(n),integral tangent,functions
@@ -211,6 +219,10 @@ arcTi(n),integral arctangent,functions
 arcShi(n),integral hyperbolic arcsine,functions
 arcChi(n),integral hyperbolic arccosine,functions
 arcThi(n),integral hyperbolic arctangent,functions
+crd,chord,functions
+ccd,cochord,functions
+acrd,antichord,functions
+accd,cochord,functions
 f'(x),derivative,functions
 f^-1(x),inverse,functions
 ln(x),natural logarithm,functions
