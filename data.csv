@@ -139,90 +139,90 @@
 6.283185306...,tau,constants
 σ(n),sigma function,functions
 s(n),aliquot sum,functions
-sin(n),sine,functions
-cos(n),cosine,functions
-tan(n),tangent,functions
-cot(n),cotangent,functions
-sec(n),secant,functions
-csc(n),cosecant,functions
-arcsin(n),arcsine,functions
-arccos(n),arccosine,functions
-arctan(n),arctangent,functions
-arccot(n),arccotangent,functions
-arcsec(n),arcsecant,functions
-arccsc(n),arccosecant,functions
-sinh(n),hyperbolic sine,functions
-cosh(n),hyperbolic cosine,functions
-tanh(n),hyperbolic tangent,functions
-coth(n),hyperbolic cotangent,functions
-sech(n),hyperbolic secant,functions
-csch(n),hyperbolic cosecant,functions
-arcsinh(n),hyperbolic arcsine,functions
-arccosh(n),hyperbolic arccosine,functions
-arctanh(n),hyperbolic arctangent,functions
-arccoth(n),hyperbolic arccotangent,functions
-arcsech(n),hyperbolic arcsecant,functions
-arccsch(n),hyperbolic arccosecant,functions
-sinc(n),cardinal sine,functions
-cosc(n),cardinal cosine,functions
-tanc(n),cardinal tangent,functions
-cotc(n),cardinal cotangent,functions
-secc(n),cardinal secant,functions
-cscc(n),cardinal cosecant,functions
-arcsinc(n),cardinal arcsine,functions
-arccosc(n),cardinal arccosine,functions
-arctanc(n),cardinal arctangent,functions
-arccotc(n),cardinal arccotangent,functions
-arcsecc(n),cardinal arcsecant,functions
-arccscc(n),cardinal arccosecant,functions
-sinhc(n),cardinal hyperbolic sine,functions
-coshc(n),cardinal hyperbolic cosine,functions
-tanhc(n),cardinal hyperbolic tangent,functions
-cothc(n),cardinal hyperbolic cotangent,functions
-sechc(n),cardinal hyperbolic secant,functions
-cschc(n),cardinal hyperbolic cosecant,functions
-arcsinhc(n),cardinal hyperbolic arcsine,functions
-arccoshc(n),cardinal hyperbolic arccosine,functions
-arctanhc(n),cardinal hyperbolic arctangent,functions
-arccothc(n),cardinal hyperbolic arccotangent,functions
-arcsechc(n),cardinal hyperbolic arcsecant,functions
-arccschc(n),cardinal hyperbolic arccosecant,functions
-ver(n),versine,functions
-vcs(n),vercosine,functions
-cvr(n),coversine,functions
-cvc(n),covercosine,functions
-xsc(n),exsecant,functions
-xcs(n),excosecant,functions
-arcver(n),arcversine,functions
-arcvcs(n),arcvercosine,functions
-arccvr(n),arccoversine,functions
-arccvc(n),arccovercosine,functions
-arcxsc(n),arcexsecant,functions
-arcxcs(n),arcexcosecant,functions
-hver(n),haversine,functions
-hvcs(n),havercosine,functions
-hcvr(n),hacoversine,functions
-hcvc(n),hacovercosine,functions
-archver(n),archaversine,functions
-archvcs(n),archavercosine,functions
-archcvr(n),archacoversine,functions
-archcvc(n),archacovercosine,functions
-Si(n),integral sine,functions
-Ci(n),integral cosine,functions
-Ti(n),integral tangent,functions
-Shi(n),integral hyperbolic sine,functions
-Chi(n),integral hyperbolic cosine,functions
-Thi(n),integral hyperbolic tangent,functions
-arcSi(n),integral arcsine,functions
-arcCi(n),integral arccosine,functions
-arcTi(n),integral arctangent,functions
-arcShi(n),integral hyperbolic arcsine,functions
-arcChi(n),integral hyperbolic arccosine,functions
-arcThi(n),integral hyperbolic arctangent,functions
-crd,chord,functions
-ccd,cochord,functions
-acrd,antichord,functions
-accd,anticochord,functions
+sin(θ),sine,functions
+cos(θ),cosine,functions
+tan(θ),tangent,functions
+cot(θ),cotangent,functions
+sec(θ),secant,functions
+csc(θ),cosecant,functions
+arcsin(θ),arcsine,functions
+arccos(θ),arccosine,functions
+arctan(θ),arctangent,functions
+arccot(θ),arccotangent,functions
+arcsec(θ),arcsecant,functions
+arccsc(θ),arccosecant,functions
+sinh(θ),hyperbolic sine,functions
+cosh(θ),hyperbolic cosine,functions
+tanh(θ),hyperbolic tangent,functions
+coth(θ),hyperbolic cotangent,functions
+sech(θ),hyperbolic secant,functions
+csch(θ),hyperbolic cosecant,functions
+arcsinh(θ),hyperbolic arcsine,functions
+arccosh(θ),hyperbolic arccosine,functions
+arctanh(θ),hyperbolic arctangent,functions
+arccoth(θ),hyperbolic arccotangent,functions
+arcsech(θ),hyperbolic arcsecant,functions
+arccsch(θ),hyperbolic arccosecant,functions
+sinc(θ),cardinal sine,functions
+cosc(θ),cardinal cosine,functions
+tanc(θ),cardinal tangent,functions
+cotc(θ),cardinal cotangent,functions
+secc(θ),cardinal secant,functions
+cscc(θ),cardinal cosecant,functions
+arcsinc(θ),cardinal arcsine,functions
+arccosc(θ),cardinal arccosine,functions
+arctanc(θ),cardinal arctangent,functions
+arccotc(θ),cardinal arccotangent,functions
+arcsecc(θ),cardinal arcsecant,functions
+arccscc(θ),cardinal arccosecant,functions
+sinhc(θ),cardinal hyperbolic sine,functions
+coshc(θ),cardinal hyperbolic cosine,functions
+tanhc(θ),cardinal hyperbolic tangent,functions
+cothc(θ),cardinal hyperbolic cotangent,functions
+sechc(θ),cardinal hyperbolic secant,functions
+cschc(θ),cardinal hyperbolic cosecant,functions
+arcsinhc(θ),cardinal hyperbolic arcsine,functions
+arccoshc(θ),cardinal hyperbolic arccosine,functions
+arctanhc(θ),cardinal hyperbolic arctangent,functions
+arccothc(θ),cardinal hyperbolic arccotangent,functions
+arcsechc(θ),cardinal hyperbolic arcsecant,functions
+arccschc(θ),cardinal hyperbolic arccosecant,functions
+ver(θ),versine,functions
+vcs(θ),vercosine,functions
+cvr(θ),coversine,functions
+cvc(θ),covercosine,functions
+xsc(θ),exsecant,functions
+xcs(θ),excosecant,functions
+arcver(θ),arcversine,functions
+arcvcs(θ),arcvercosine,functions
+arccvr(θ),arccoversine,functions
+arccvc(θ),arccovercosine,functions
+arcxsc(θ),arcexsecant,functions
+arcxcs(θ),arcexcosecant,functions
+hver(θ),haversine,functions
+hvcs(θ),havercosine,functions
+hcvr(θ),hacoversine,functions
+hcvc(θ),hacovercosine,functions
+archver(θ),archaversine,functions
+archvcs(θ),archavercosine,functions
+archcvr(θ),archacoversine,functions
+archcvc(θ),archacovercosine,functions
+Si(θ),integral sine,functions
+Ci(θ),integral cosine,functions
+Ti(θ),integral tangent,functions
+Shi(θ),integral hyperbolic sine,functions
+Chi(θ),integral hyperbolic cosine,functions
+Thi(θ),integral hyperbolic tangent,functions
+arcSi(θ),integral arcsine,functions
+arcCi(θ),integral arccosine,functions
+arcTi(θ),integral arctangent,functions
+arcShi(θ),integral hyperbolic arcsine,functions
+arcChi(θ),integral hyperbolic arccosine,functions
+arcThi(θ),integral hyperbolic arctangent,functions
+crd(θ),chord,functions
+ccd(θ),cochord,functions
+acrd(θ),antichord,functions
+accd(θ),anticochord,functions
 f'(x),derivative,functions
 f^-1(x),inverse,functions
 ln(x),natural logarithm,functions
