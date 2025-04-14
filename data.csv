@@ -1,355 +1,355 @@
-1,one,numbers1-50
-2,two,numbers1-50
-3,three,numbers1-50
-4,four,numbers1-50
-5,five,numbers1-50
-6,six,numbers1-50
-7,seven,numbers1-50
-8,eight,numbers1-50
-9,nine,numbers1-50
-10,ten,numbers1-50
-11,eleven,numbers1-50
-12,twelve,numbers1-50
-13,thirteen,numbers1-50
-14,fourteen,numbers1-50
-15,fifteen,numbers1-50
-16,sixteen,numbers1-50
-17,seventeen,numbers1-50
-18,eighteen,numbers1-50
-19,nineteen,numbers1-50
-20,twenty,numbers1-50
-21,twenty-one,numbers1-50
-22,twenty-two,numbers1-50
-23,twenty-three,numbers1-50
-24,twenty-four,numbers1-50
-25,twenty-five,numbers1-50
-26,twenty-six,numbers1-50
-27,twenty-seven,numbers1-50
-28,twenty-eight,numbers1-50
-29,twenty-nine,numbers1-50
-30,thirty,numbers1-50
-31,thirty-one,numbers1-50
-32,thirty-two,numbers1-50
-33,thirty-three,numbers1-50
-34,thirty-four,numbers1-50
-35,thirty-five,numbers1-50
-36,thirty-six,numbers1-50
-37,thirty-seven,numbers1-50
-38,thirty-eight,numbers1-50
-39,thirty-nine,numbers1-50
-40,forty,numbers1-50
-41,forty-one,numbers1-50
-42,forty-two,numbers1-50
-43,forty-three,numbers1-50
-44,forty-four,numbers1-50
-45,forty-five,numbers1-50
-46,forty-six,numbers1-50
-47,forty-seven,numbers1-50
-48,forty-eight,numbers1-50
-49,forty-nine,numbers1-50
-50,fifty,numbers1-50
-51,fifty-one,numbers51-100
-52,fifty-two,numbers51-100
-53,fifty-three,numbers51-100
-54,fifty-four,numbers51-100
-55,fifty-five,numbers51-100
-56,fifty-six,numbers51-100
-57,fifty-seven,numbers51-100
-58,fifty-eight,numbers51-100
-59,fifty-nine,numbers51-100
-60,sixty,numbers51-100
-61,sixty-one,numbers51-100
-62,sixty-two,numbers51-100
-63,sixty-three,numbers51-100
-64,sixty-four,numbers51-100
-65,sixty-five,numbers51-100
-66,sixty-six,numbers51-100
-67,sixty-seven,numbers51-100
-68,sixty-eight,numbers51-100
-69,sixty-nine,numbers51-100
-70,seventy,numbers51-100
-71,seventy-one,numbers51-100
-72,seventy-two,numbers51-100
-73,seventy-three,numbers51-100
-74,seventy-four,numbers51-100
-75,seventy-five,numbers51-100
-76,seventy-six,numbers51-100
-77,seventy-seven,numbers51-100
-78,seventy-eight,numbers51-100
-79,seventy-nine,numbers51-100
-80,eighty,numbers51-100
-81,eighty-one,numbers51-100
-82,eighty-two,numbers51-100
-83,eighty-three,numbers51-100
-84,eighty-four,numbers51-100
-85,eighty-five,numbers51-100
-86,eighty-six,numbers51-100
-87,eighty-seven,numbers51-100
-88,eighty-eight,numbers51-100
-89,eighty-nine,numbers51-100
-90,ninety,numbers51-100
-91,ninety-one,numbers51-100
-92,ninety-two,numbers51-100
-93,ninety-three,numbers51-100
-94,ninety-four,numbers51-100
-95,ninety-five,numbers51-100
-96,ninety-six,numbers51-100
-97,ninety-seven,numbers51-100
-98,ninety-eight,numbers51-100
-99,ninety-nine,numbers51-100
-100,hundred,numbers51-100
-0,zero,numbers51-100
-𝔸,algebraics number set,sets
-𝔹,true and false set,sets
-ℂ,complex numbers set,sets
-ℂ̷,split-complex numbers set,sets
-𝔻,decimal numbers set,sets
-𝔻̷,duals numbers set,sets
-ℍ,quaternions set,sets
-𝕀,imaginary numbers set,sets
-ℕ,natural numbers set,sets
-ℕ*,positive integers set,sets
-𝕆,octonions set,sets
-ℙ,primes set,sets
-ℙ_i,gaussian primes set,sets
-ℚ,rational numbers set,sets
-ℝ,real numbers set,sets
-𝕋,transcendantal numbers set,sets
-ℤ,integers set,sets
-ℤ-,nonpositive integers set,sets
-ℤ-*,negative integers set,sets
-ℤ[i],gaussian integers set,sets
-0.011010100...,prime constant (binary),constants
-0.123456789...,champernowne constant,constants
-0.149162536...,squares (besicovitch),constants
-0.235711131...,the copeland-erdos constant,constants
-0.414682509...,prime constant (decimal),constants
-0.567143290...,omega constant,constants
-0.577215664...,euler's constant,constants
-0.915965594...,catalan's constant,constants
-1.202056903...,apery's constant,constants
-1.324717957...,plastic number,constants
-1.465571231...,supergolden ratio,constants
-1.618033988...,golden ratio,constants
-1.839286755...,tribonacci constant,constants
-2.295587149...,universal parabolic constant,constants
-2.414213562...,silver ratio,constants
-2.718781845...,euler's number,constants
-3.141592653...,pi,constants
-6.283185306...,tau,constants
-σ(n),sigma function,functions
-s(n),aliquot sum,functions
-sin(θ),sine,functions
-cos(θ),cosine,functions
-tan(θ),tangent,functions
-cot(θ),cotangent,functions
-sec(θ),secant,functions
-csc(θ),cosecant,functions
-arcsin(θ),arcsine,functions
-arccos(θ),arccosine,functions
-arctan(θ),arctangent,functions
-arccot(θ),arccotangent,functions
-arcsec(θ),arcsecant,functions
-arccsc(θ),arccosecant,functions
-sinh(θ),hyperbolic sine,functions
-cosh(θ),hyperbolic cosine,functions
-tanh(θ),hyperbolic tangent,functions
-coth(θ),hyperbolic cotangent,functions
-sech(θ),hyperbolic secant,functions
-csch(θ),hyperbolic cosecant,functions
-arcsinh(θ),hyperbolic arcsine,functions
-arccosh(θ),hyperbolic arccosine,functions
-arctanh(θ),hyperbolic arctangent,functions
-arccoth(θ),hyperbolic arccotangent,functions
-arcsech(θ),hyperbolic arcsecant,functions
-arccsch(θ),hyperbolic arccosecant,functions
-sinc(θ),cardinal sine,functions
-cosc(θ),cardinal cosine,functions
-tanc(θ),cardinal tangent,functions
-cotc(θ),cardinal cotangent,functions
-secc(θ),cardinal secant,functions
-cscc(θ),cardinal cosecant,functions
-arcsinc(θ),cardinal arcsine,functions
-arccosc(θ),cardinal arccosine,functions
-arctanc(θ),cardinal arctangent,functions
-arccotc(θ),cardinal arccotangent,functions
-arcsecc(θ),cardinal arcsecant,functions
-arccscc(θ),cardinal arccosecant,functions
-sinhc(θ),cardinal hyperbolic sine,functions
-coshc(θ),cardinal hyperbolic cosine,functions
-tanhc(θ),cardinal hyperbolic tangent,functions
-cothc(θ),cardinal hyperbolic cotangent,functions
-sechc(θ),cardinal hyperbolic secant,functions
-cschc(θ),cardinal hyperbolic cosecant,functions
-arcsinhc(θ),cardinal hyperbolic arcsine,functions
-arccoshc(θ),cardinal hyperbolic arccosine,functions
-arctanhc(θ),cardinal hyperbolic arctangent,functions
-arccothc(θ),cardinal hyperbolic arccotangent,functions
-arcsechc(θ),cardinal hyperbolic arcsecant,functions
-arccschc(θ),cardinal hyperbolic arccosecant,functions
-ver(θ),versine,functions
-vcs(θ),vercosine,functions
-cvr(θ),coversine,functions
-cvc(θ),covercosine,functions
-xsc(θ),exsecant,functions
-xcs(θ),excosecant,functions
-arcver(θ),arcversine,functions
-arcvcs(θ),arcvercosine,functions
-arccvr(θ),arccoversine,functions
-arccvc(θ),arccovercosine,functions
-arcxsc(θ),arcexsecant,functions
-arcxcs(θ),arcexcosecant,functions
-hver(θ),haversine,functions
-hvcs(θ),havercosine,functions
-hcvr(θ),hacoversine,functions
-hcvc(θ),hacovercosine,functions
-archver(θ),archaversine,functions
-archvcs(θ),archavercosine,functions
-archcvr(θ),archacoversine,functions
-archcvc(θ),archacovercosine,functions
-Si(θ),integral sine,functions
-Ci(θ),integral cosine,functions
-Ti(θ),integral tangent,functions
-Shi(θ),integral hyperbolic sine,functions
-Chi(θ),integral hyperbolic cosine,functions
-Thi(θ),integral hyperbolic tangent,functions
-arcSi(θ),integral arcsine,functions
-arcCi(θ),integral arccosine,functions
-arcTi(θ),integral arctangent,functions
-arcShi(θ),integral hyperbolic arcsine,functions
-arcChi(θ),integral hyperbolic arccosine,functions
-arcThi(θ),integral hyperbolic arctangent,functions
-crd(θ),chord,functions
-ccd(θ),cochord,functions
-acrd(θ),antichord,functions
-accd(θ),anticochord,functions
-f'(x),derivative,functions
-f^-1(x),inverse,functions
-ln(x),natural logarithm,functions
-log(x),decimal logarithm,functions
-x^y,powers,functions
-x^^y,tetration,functions
-√,square root,functions
-x²,square,functions
-A²+B²=C²,pythagoras theorem,theroems
-A²+B²-2ab*cos(c)=C²,law of cosines,theroems
-a^b mod b = a,fermat's little theorem,theroems
-(a+b)(a-b)=a²-b²,difference of squares,theroems
-a+b=b+a,community,theroems
-a+(b+c)=(a+b)+c,assosiativity,theroems
-a(b+c)=ab+ac,distributivity,theroems
-+,plus,symbols
-×,times,symbols
-⋅,cdot,symbols
-−,minus,symbols
-/,slash,symbols
-÷,obelus,symbols
-∀,for all,symbols
-∃,there exist,symbols
-∄,there does not exist,symbols
-!∃,there exist only one,symbols
-∅,empty set,symbols
-∆,increment,symbols
-∇,nabla,symbols
-∈,element of,symbols
-∉,not an element of,symbols
-∋,contains as member of,symbols
-∌,does not contain as member of,symbols
-∎,end of proof,symbols
-∏,n-ary product,symbols
-∐,n-ary coproduct,symbols
-∑,n-ary summation,symbols
-±,plus or minus,symbols
-∓,minus or plus,symbols
-∗,asterix operator,symbols
-∛,cube root,symbols
-∜,tesseract root,symbols
-∝,proportional to,symbols
-∞,infinity,symbols
-∣,divides,symbols
-∧,and,symbols
-∨,or,symbols
-∩,intersection,symbols
-∪,union,symbols
- ∫ ,integral,symbols
-∮,contour integral,symbols
-∴,therefore,symbols
-∵,because,symbols
-∼,tilde operator,symbols
-∿,sine wave,symbols
-≅,approximately equal to,symbols
-≈,almost equal to,symbols
-≝,equal by definition,symbols
-≡,identical to,symbols
-<,less-than,symbols
->,greater-than,symbols
-≤,less-than or equal,symbols
-≥,greater-than or equal,symbols
-≪,much less-than,symbols
-≫,much greater-than,symbols
-⊂,subset of,symbols
-⊃,superset of,symbols
-⊆,subset of or equal to,symbols
-⊇,superset of or equal to,symbols
-⊻,xor,symbols
-⊼,nand,symbols
-⊽,nor,symbols
-Α,capital alpha,capitalgreek
-Β,capital beta,capitalgreek
-Γ,capital gamma,capitalgreek
-Δ,capital delta,capitalgreek
-Ε,capital epsilon,capitalgreek
-Ζ,capital zeta,capitalgreek
-Η,capital eta,capitalgreek
-Θ,capital theta,capitalgreek
-Ι,capital iota,capitalgreek
-Κ,capital kappa,capitalgreek
-Λ,capital lambda,capitalgreek
-Μ,capital mu,capitalgreek
-Ν,capital nu,capitalgreek
-Ξ,capital xi,capitalgreek
-Π,capital pi,capitalgreek
-Ο,capital omicron,capitalgreek
-Ρ,capital rho,capitalgreek
-Σ,capital sigma,capitalgreek
-Τ,capital tau,capitalgreek
-Υ,capital upsilon,capitalgreek
-Φ,capital phi,capitalgreek
-Χ,capital khi,capitalgreek
-Ψ,capital psi,capitalgreek
-Ω,capital omega,capitalgreek
-α,small alpha,smallgreek
-β,small beta,smallgreek
-ϐ,cursive beta,smallgreek
-γ,small gamma,smallgreek
-δ,small delta,smallgreek
-ε,small epsilon,smallgreek
-ζ,small zeta,smallgreek
-η,small eta,smallgreek
-θ,small theta,smallgreek
-ϑ,curved theta,smallgreek
-ι,small iota,smallgreek
-κ,small kappa,smallgreek
-ϰ,cursive kappa,smallgreek
-λ,small lambda,smallgreek
-μ,small mu,smallgreek
-ν,small nu,smallgreek
-ξ,small xi,smallgreek
-ο,small omicron,smallgreek
-π,small pi,smallgreek
-ϖ,cursive pi,smallgreek
-ρ,small rho,smallgreek
-ϱ,cursive rho,smallgreek
-σ,small sigma,smallgreek
-ς,final sigma,smallgreek
-τ,small tau,smallgreek
-υ,small upsilon,smallgreek
-φ,cursive phi,smallgreek
-ϕ,small phi,smallgreek
-χ,small khi,smallgreek
-ψ,small psi,smallgreek
-ω,small omega,smallgreek
-2^n-1,mersenne's numbers,sequence
-2^(2^n)+1,fermat's numbers,sequence
-F(n-1)+F(n-2),fibonnachi sequence,sequence
-F(n-1)+F(n-2)+F(n-3),tribonnachi sequence,sequence
+1,one,numbers1-50,un
+2,two,numbers1-50,deux
+3,three,numbers1-50,trois
+4,four,numbers1-50,quatre
+5,five,numbers1-50,cinq
+6,six,numbers1-50,six
+7,seven,numbers1-50,sept
+8,eight,numbers1-50,huit
+9,nine,numbers1-50,neuf
+10,ten,numbers1-50,dix
+11,eleven,numbers1-50,onze
+12,twelve,numbers1-50,douze
+13,thirteen,numbers1-50,treize
+14,fourteen,numbers1-50,quatorze
+15,fifteen,numbers1-50,quinze
+16,sixteen,numbers1-50,seize
+17,seventeen,numbers1-50,dix-sept
+18,eighteen,numbers1-50,dix-huit
+19,nineteen,numbers1-50,dix-neuf
+20,twenty,numbers1-50,vingt
+21,twenty-one,numbers1-50,vingt-et-un
+22,twenty-two,numbers1-50,vingt-deux
+23,twenty-three,numbers1-50,vingt-trois
+24,twenty-four,numbers1-50,vingt-quatre
+25,twenty-five,numbers1-50,vingt-cinq
+26,twenty-six,numbers1-50,vingt-six
+27,twenty-seven,numbers1-50,vingt-sept
+28,twenty-eight,numbers1-50,vingt-huit
+29,twenty-nine,numbers1-50,vingt-neuf
+30,thirty,numbers1-50,trente
+31,thirty-one,numbers1-50,trente-et-un
+32,thirty-two,numbers1-50,trente-deux
+33,thirty-three,numbers1-50,trente-trois
+34,thirty-four,numbers1-50,trente-quatre
+35,thirty-five,numbers1-50,trente-cinq
+36,thirty-six,numbers1-50,trente-six
+37,thirty-seven,numbers1-50,trente-sept
+38,thirty-eight,numbers1-50,trente-huit
+39,thirty-nine,numbers1-50,trente-neuf
+40,forty,numbers1-50,quarante
+41,forty-one,numbers1-50,quarante-et-un
+42,forty-two,numbers1-50,quarante-deux
+43,forty-three,numbers1-50,quarante-trois
+44,forty-four,numbers1-50,quarante-quatre
+45,forty-five,numbers1-50,quarante-cinq
+46,forty-six,numbers1-50,quarante-six
+47,forty-seven,numbers1-50,quarante-sept
+48,forty-eight,numbers1-50,quarante-huit
+49,forty-nine,numbers1-50,quarante-neuf
+50,fifty,numbers1-50,cinquante
+51,fifty-one,numbers51-100,cinquante-et-un
+52,fifty-two,numbers51-100,cinquante-deux
+53,fifty-three,numbers51-100,cinquante-trois
+54,fifty-four,numbers51-100,cinquante-quatre
+55,fifty-five,numbers51-100,cinquante-cinq
+56,fifty-six,numbers51-100,cinquante-six
+57,fifty-seven,numbers51-100,cinquante-sept
+58,fifty-eight,numbers51-100,cinquante-huit
+59,fifty-nine,numbers51-100,cinquante-neuf
+60,sixty,numbers51-100,soixante
+61,sixty-one,numbers51-100,soixante-et-un
+62,sixty-two,numbers51-100,soixante-deux
+63,sixty-three,numbers51-100,soixante-trois
+64,sixty-four,numbers51-100,soixante-quatre
+65,sixty-five,numbers51-100,soixante-cinq
+66,sixty-six,numbers51-100,soixante-six
+67,sixty-seven,numbers51-100,soixante-sept
+68,sixty-eight,numbers51-100,soixante-huit
+69,sixty-nine,numbers51-100,soixante-neuf
+70,seventy,numbers51-100,soixante-dix
+71,seventy-one,numbers51-100,soixante-et-onze
+72,seventy-two,numbers51-100,soixante-douze
+73,seventy-three,numbers51-100,soixante-treize
+74,seventy-four,numbers51-100,soixante-quatorze
+75,seventy-five,numbers51-100,soixante-quinze
+76,seventy-six,numbers51-100,soixante-seize
+77,seventy-seven,numbers51-100,soixante-dix-sept
+78,seventy-eight,numbers51-100,soixante-dix-huit
+79,seventy-nine,numbers51-100,soixante-dix-neuf
+80,eighty,numbers51-100,quatre-vingts
+81,eighty-one,numbers51-100,quatre-vingt-un
+82,eighty-two,numbers51-100,quatre-vingt-deux
+83,eighty-three,numbers51-100,quatre-vingt-trois
+84,eighty-four,numbers51-100,quatre-vingt-quatre
+85,eighty-five,numbers51-100,quatre-vingt-cinq
+86,eighty-six,numbers51-100,quatre-vingt-six
+87,eighty-seven,numbers51-100,quatre-vingt-sept
+88,eighty-eight,numbers51-100,quatre-vingt-huit
+89,eighty-nine,numbers51-100,quatre-vingt-neuf
+90,ninety,numbers51-100,quatre-vingt-dix
+91,ninety-one,numbers51-100,quatre-vingt-onze
+92,ninety-two,numbers51-100,quatre-vingt-douze
+93,ninety-three,numbers51-100,quatre-vingt-treize
+94,ninety-four,numbers51-100,quatre-vingt-quatorze
+95,ninety-five,numbers51-100,quatre-vingt-quinze
+96,ninety-six,numbers51-100,quatre-vingt-seize
+97,ninety-seven,numbers51-100,quatre-vingt-dix-sept
+98,ninety-eight,numbers51-100,quatre-vingt-dix-huit
+99,ninety-nine,numbers51-100,quatre-vingt-dix-neuf
+100,hundred,numbers51-100,cent
+0,zero,numbers51-100,zéro
+𝔸,algebraic numbers set,sets,ensemble des nombres algébriques
+𝔹,true and false set,sets,ensemble de bool
+ℂ,complex numbers set,sets,ensemble des nombres complexes
+ℂ̷,split-complex numbers set,sets,ensemble des nombres complexes déployés
+𝔻,decimal numbers set,sets,ensemble des nombres décimaux
+𝔻̷,duals numbers set,sets,ensemble des nombres duaux
+ℍ,quaternions set,sets,ensemble des quaternions
+𝕀,imaginary numbers set,sets,ensemble des nombres imaginaires
+ℕ,natural numbers set,sets,ensemble des nombres naturels
+ℕ*,positive integers set,sets,ensemble des nombres naturels non-nul
+𝕆,octonions set,sets,ensemble des octonions
+ℙ,prime numbres set,sets,ensemble des nombres premiers
+ℙ_i,gaussian primes set,sets,ensemble des nombres premiers de gauss
+ℚ,rational numbers set,sets,ensemble des nombres rationnels
+ℝ,real numbers set,sets,ensemble des nombres réels
+𝕋,transcendantal numbers set,sets,ensemble des nombres transcendentaux
+ℤ,integers set,sets,ensemble des nombres entiers relatifs 
+ℤ-,nonpositive integers set,sets,ensemble des nombres négatifs
+ℤ-*,negative integers set,sets,ensemble des nombres négatifs non-nul
+ℤ[i],gaussian integers set,sets,ensemble des nombres entiers de gausse
+0.011010100...,prime constant,constants,constante des nombres premiers
+0.123456789...,champernowne constant,constants, constante de champernowne
+0.149162536...,squares (besicovitch),constants,carrés de besicovitch
+0.235711131...,copeland-erdos constant,constants,constante copeland-erdos
+0.414682509...,prime constant,constants,constante des nombres premiers
+0.567143290...,omega constant,constants,constante oméga
+0.577215664...,euler's constant,constants,constante d'euler
+0.915965594...,catalan's constant,constants,constante de catalan
+1.202056903...,apery's constant,constants,constante d'apery
+1.324717957...,plastic number,constants,constante plastique
+1.465571231...,supergolden ratio,constants,nombre superdoré
+1.618033988...,golden ratio,constants,nombre d'or
+1.839286755...,tribonacci constant,constants,constante de tribonacci
+2.295587149...,universal parabolic constant,constants,constant parabolique universel
+2.414213562...,silver ratio,constants,nombre d'argent
+2.718781845...,euler's number,constants,nombre d'euler
+3.141592653...,pi,constants,pi
+6.283185306...,tau,constants,tau
+σ(n),sigma function,functions,fonction sigma
+s(n),aliquot sum,functions, somme aliquot
+sin(θ),sine,functions,sinus
+cos(θ),cosine,functions,cosinus
+tan(θ),tangent,functions,tangente
+cot(θ),cotangent,functions,cotangente
+sec(θ),secant,functions,sécante
+csc(θ),cosecant,functions,cosecant
+arcsin(θ),arcsine,functions,arcsinus
+arccos(θ),arccosine,functions,arccosinus
+arctan(θ),arctangent,functions,arctangente
+arccot(θ),arccotangent,functions,arccotangente
+arcsec(θ),arcsecant,functions,arcsécante
+arccsc(θ),arccosecant,functions,arccosécante
+sinh(θ),hyperbolic sine,functions,sinus hyperbolique
+cosh(θ),hyperbolic cosine,functions,cosinus hyperbolique
+tanh(θ),hyperbolic tangent,functions,tangente hyperbolique
+coth(θ),hyperbolic cotangent,functions,cotangente hyperbolique
+sech(θ),hyperbolic secant,functions,sécante hyperbolique
+csch(θ),hyperbolic cosecant,functions,cosécante hyperbolique
+arcsinh(θ),hyperbolic arcsine,functions,arcsinus hyperbolique
+arccosh(θ),hyperbolic arccosine,functions,arccosinus hyperbolique
+arctanh(θ),hyperbolic arctangent,functions,arctangente hyperbolique
+arccoth(θ),hyperbolic arccotangent,functions,arccotangente hyperbolique
+arcsech(θ),hyperbolic arcsecant,functions,arcsécante hyperbolique
+arccsch(θ),hyperbolic arccosecant,functions,arccosécante hyperbolique
+sinc(θ),cardinal sine,functions,sinus cardinale
+cosc(θ),cardinal cosine,functions,cosinus cardinale
+tanc(θ),cardinal tangent,functions,tangente cardinale
+cotc(θ),cardinal cotangent,functions,cotangente cardinale
+secc(θ),cardinal secant,functions,sécante cardinale
+cscc(θ),cardinal cosecant,functions,cosecant cardinale
+arcsinc(θ),cardinal arcsine,functions,arcsinus cardinale
+arccosc(θ),cardinal arccosine,functions,arccosinus cardinale
+arctanc(θ),cardinal arctangent,functions,arctangente cardinale
+arccotc(θ),cardinal arccotangent,functions,arccotangente cardinale
+arcsecc(θ),cardinal arcsecant,functions,arcsécante cardinale
+arccscc(θ),cardinal arccosecant,functions,arccosécante caridnale
+sinhc(θ),cardinal hyperbolic sine,functions,sinus hyperbolique cardinale
+coshc(θ),cardinal hyperbolic cosine,functions,cosinus hyperbolique cardinale
+tanhc(θ),cardinal hyperbolic tangent,functions,tangente hyperbolique cardinale
+cothc(θ),cardinal hyperbolic cotangent,functions,cotangente hyperbolique cardinale
+sechc(θ),cardinal hyperbolic secant,functions,sécante hyperbolique cardinale
+cschc(θ),cardinal hyperbolic cosecant,functions,cosécante hyperbolique cardinale
+arcsinhc(θ),cardinal hyperbolic arcsine,functions,arcsinus hyperbolique cardinale
+arccoshc(θ),cardinal hyperbolic arccosine,functions,arccosinus hyperbolique cardinale
+arctanhc(θ),cardinal hyperbolic arctangent,functions,arctangente hyperbolique cardinale
+arccothc(θ),cardinal hyperbolic arccotangent,functions,arccotangente hyperbolique cardinale
+arcsechc(θ),cardinal hyperbolic arcsecant,functions,arcsécante hyperbolique cardinale
+arccschc(θ),cardinal hyperbolic arccosecant,functions,arccosécante hyperbolique cardinale
+ver(θ),versine,functions,versinus
+vcs(θ),vercosine,functions,vercosinus
+cvr(θ),coversine,functions,coversinus
+cvc(θ),covercosine,functions,covercosinus
+xsc(θ),exsecant,functions,exsécante
+xcs(θ),excosecant,functions,excosécante
+arcver(θ),arcversine,functions,arcversinus
+arcvcs(θ),arcvercosine,functions,arcvercosinus
+arccvr(θ),arccoversine,functions,arccoversinus
+arccvc(θ),arccovercosine,functions,arccovercosinus
+arcxsc(θ),arcexsecant,functions,arcexsécante
+arcxcs(θ),arcexcosecant,functions,arcexcosécante
+hver(θ),haversine,functions,haversinus
+hvcs(θ),havercosine,functions,havercosinus
+hcvr(θ),hacoversine,functions,hacoversinus
+hcvc(θ),hacovercosine,functions,hacovercosinus
+archver(θ),archaversine,functions,archaversinus
+archvcs(θ),archavercosine,functions,archavercosinus
+archcvr(θ),archacoversine,functions,archacoversinus
+archcvc(θ),archacovercosine,functions,archacovercosins
+Si(θ),integral sine,functions,sinus intégrale
+Ci(θ),integral cosine,functions,cosinus intégrale
+Ti(θ),integral tangent,functions,tangente intégrale
+Shi(θ),integral hyperbolic sine,functions,sinus hyperbolique intégrale
+Chi(θ),integral hyperbolic cosine,functions,cosinus hyperbolique intégrale
+Thi(θ),integral hyperbolic tangent,functions,tangente hyperbolique intégrale
+arcSi(θ),integral arcsine,functions,arcsinus intégrale
+arcCi(θ),integral arccosine,functions,arccosinus intégrale
+arcTi(θ),integral arctangent,functions,arctangente intégrale
+arcShi(θ),integral hyperbolic arcsine,functions,sinus hyperbolique intégrale
+arcChi(θ),integral hyperbolic arccosine,functions,cosinus hyperbolique intégrale
+arcThi(θ),integral hyperbolic arctangent,functions,tangente hyperbolique intégrale
+crd(θ),chord,functions,corde
+ccd(θ),cochord,functions,cocorde
+acrd(θ),antichord,functions,anticorde
+accd(θ),anticochord,functions,anticocorde
+f'(x),derivative,functions,dérivé
+f^-1(x),inverse,functions,inverse
+ln(x),natural logarithm,functions,logarithme naturel
+log(x),decimal logarithm,functions,logarithme décimal
+x^y,powers,functions,puissance
+x^^y,tetration,functions,tétration
+√,square root,functions,racine carré
+x²,square,functions,carré
+A²+B²=C²,pythagoras theorem,theroems,théorème de pythagore
+A²+B²-2ab*cos(c)=C²,law of cosines,theroems,théorème d'al-kashi
+a^b mod b = a,fermat's little theorem,theroems,le petit théorème de fermat
+(a+b)(a-b)=a²-b²,difference of squares,theroems, différence de carrés
+a+b=b+a,community,theroems,communité
+a+(b+c)=(a+b)+c,assosiativity,theroems,assosiativité
+a(b+c)=ab+ac,distributivity,theroems,distributivité
++,plus,symbols,plus
+×,times,symbols,fois
+⋅,cdot,symbols,point médiant
+−,minus,symbols,moins
+/,slash,symbols,slash
+÷,obelus,symbols,obélus
+∀,for all,symbols,pour tout
+∃,there exist,symbols,il existe
+∄,there does not exist,symbols,il n'existe pas
+!∃,there exist only one,symbols,il n'existe qu'un seul
+∅,empty set,symbols,ensemble vide
+∆,increment,symbols,incrément
+∇,nabla,symbols,nabla
+∈,element of,symbols,élément de
+∉,not an element of,symbols,pas un élément de
+∋,contains as member of,symbols,contient comme membre
+∌,does not contain as member of,symbols,ne contient pas comme membre
+∎,end of proof,symbols,CQFD
+∏,product,symbols,produit
+∐,coproduct,symbols,coproduit
+∑,sum,symbols,somme
+±,plus or minus,symbols,plus ou moins
+∓,minus or plus,symbols,moins ou plus
+∗,asterix operator,symbols,astérix
+∛,cube root,symbols,racine cubique
+∜,tesseract root,symbols,racine tesseract
+∝,proportional to,symbols,proportionnel à
+∞,infinity,symbols,infini
+∣,divides,symbols,divise
+∧,and,symbols,et
+∨,or,symbols,ou
+∩,intersection,symbols,intersection
+∪,union,symbols,union
+ ∫ ,integral,symbols,intégrale
+∮,contour integral,symbols,intégrale de contour
+∴,therefore,symbols,donc
+∵,because,symbols,car
+∼,tilde operator,symbols,tilde
+∿,sine wave,symbols,onde sinus
+≅,approximately equal to,symbols,approximativement égale à
+≈,almost equal to,symbols,presque égale à
+≝,equal by definition,symbols,égale par définition
+≡,identical to,symbols,indentique à
+<,less-than,symbols,plus petit que
+>,greater-than,symbols, plus grand que
+≤,less-than or equal,symbols, plus petit ou égale que
+≥,greater-than or equal,symbols, plus grand ou égale que
+≪,much less-than,symbols, beacoup plus petit
+≫,much greater-than,symbols, beacoup plus grand
+⊂,subset of,symbols,sous-ensemble de
+⊃,superset of,symbols,sur-ensemble de
+⊆,subset of or equal to,symbols,sous-ensemble de ou égale à
+⊇,superset of or equal to,symbols,sur-ensemble de ou égale à
+⊻,xor,symbols,ou exclusive
+⊼,nand,symbols,pas et
+⊽,nor,symbols,pas ou
+Α,capital alpha,alpha majuscule
+Β,capital beta,béta majuscule
+Γ,capital gamma,gamma majuscule
+Δ,capital delta,delta majuscule
+Ε,capital epsilon,epsilon majuscule
+Ζ,capital zeta,zêta majuscule
+Η,capital eta,êta majuscule
+Θ,capital theta,thêta majuscule
+Ι,capital iota,iota majuscule
+Κ,capital kappa,kappa majuscule
+Λ,capital lambda,lambda majuscule
+Μ,capital mu,mu majuscule
+Ν,capital nu,nu majuscule
+Ξ,capital xi,xi majuscule
+Π,capital pi,pi majuscule
+Ο,capital omicron,omicron majuscule
+Ρ,capital rho,rho majuscule
+Σ,capital sigma,sigma majuscule
+Τ,capital tau,tau majuscule
+Υ,capital upsilon,upsilon majuscule
+Φ,capital phi,phi majuscule
+Χ,capital khi,khi majuscule
+Ψ,capital psi,psi majuscule
+Ω,capital omega,omega majuscule
+α,small alpha,alpha minuscule
+β,small beta,béta minuscule
+ϐ,cursive beta,béta cursive minuscule
+γ,small gamma,gamma minuscule
+δ,small delta,delta minuscule
+ε,small epsilon,epsilon minuscule
+ζ,small zeta,zêta minuscule
+η,small eta,êta minuscule
+θ,small theta,thêta minuscule
+ϑ,curved theta,thêta incurvé minuscule
+ι,small iota,iota minuscule
+κ,small kappa,kappa minuscule
+ϰ,cursive kappa,kappa cursive minuscule
+λ,small lambda,lambda minuscule
+μ,small mu,mu minuscule
+ν,small nu,nu minuscule
+ξ,small xi,xi minuscule
+ο,small omicron,omicron minuscule
+π,small pi,pi minuscule
+ϖ,cursive pi,pi cursive minuscule
+ρ,small rho,rho minuscule
+ϱ,cursive rho,rho cursive minuscule
+σ,small sigma,sigma minuscule
+ς,final sigma,sigma final minuscule
+τ,small tau,tau minuscule
+υ,small upsilon,upsilon minuscule
+φ,cursive phi,phi cursive minuscule
+ϕ,small phi,phi minuscule
+χ,small khi,khi minuscule
+ψ,small psi,psi minuscule
+ω,small omega,omega minuscule
+2^n-1,mersenne's numbers,sequence,nombres de mersenne
+2^(2^n)+1,fermat's numbers,sequence,nombres de fermats
+F(n-1)+F(n-2),fibonnachi sequence,sequence,séquance de fibonnachi
+F(n-1)+F(n-2)+F(n-3),tribonnachi sequence,sequence,sequance de tribonnachi
