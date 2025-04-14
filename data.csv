@@ -294,61 +294,61 @@ a(b+c)=ab+ac,distributivity,theroems,distributivité
 ⊻,xor,symbols,ou exclusive
 ⊼,nand,symbols,pas et
 ⊽,nor,symbols,pas ou
-Α,capital alpha,alpha majuscule
-Β,capital beta,béta majuscule
-Γ,capital gamma,gamma majuscule
-Δ,capital delta,delta majuscule
-Ε,capital epsilon,epsilon majuscule
-Ζ,capital zeta,zêta majuscule
-Η,capital eta,êta majuscule
-Θ,capital theta,thêta majuscule
-Ι,capital iota,iota majuscule
-Κ,capital kappa,kappa majuscule
-Λ,capital lambda,lambda majuscule
-Μ,capital mu,mu majuscule
-Ν,capital nu,nu majuscule
-Ξ,capital xi,xi majuscule
-Π,capital pi,pi majuscule
-Ο,capital omicron,omicron majuscule
-Ρ,capital rho,rho majuscule
-Σ,capital sigma,sigma majuscule
-Τ,capital tau,tau majuscule
-Υ,capital upsilon,upsilon majuscule
-Φ,capital phi,phi majuscule
-Χ,capital khi,khi majuscule
-Ψ,capital psi,psi majuscule
-Ω,capital omega,omega majuscule
-α,small alpha,alpha minuscule
-β,small beta,béta minuscule
-ϐ,cursive beta,béta cursive minuscule
-γ,small gamma,gamma minuscule
-δ,small delta,delta minuscule
-ε,small epsilon,epsilon minuscule
-ζ,small zeta,zêta minuscule
-η,small eta,êta minuscule
-θ,small theta,thêta minuscule
-ϑ,curved theta,thêta incurvé minuscule
-ι,small iota,iota minuscule
-κ,small kappa,kappa minuscule
-ϰ,cursive kappa,kappa cursive minuscule
-λ,small lambda,lambda minuscule
-μ,small mu,mu minuscule
-ν,small nu,nu minuscule
-ξ,small xi,xi minuscule
-ο,small omicron,omicron minuscule
-π,small pi,pi minuscule
-ϖ,cursive pi,pi cursive minuscule
-ρ,small rho,rho minuscule
-ϱ,cursive rho,rho cursive minuscule
-σ,small sigma,sigma minuscule
-ς,final sigma,sigma final minuscule
-τ,small tau,tau minuscule
-υ,small upsilon,upsilon minuscule
-φ,cursive phi,phi cursive minuscule
-ϕ,small phi,phi minuscule
-χ,small khi,khi minuscule
-ψ,small psi,psi minuscule
-ω,small omega,omega minuscule
+Α,capital alpha,capitalgreek,alpha majuscule
+Β,capital beta,capitalgreek,béta majuscule
+Γ,capital gamma,capitalgreek,gamma majuscule
+Δ,capital delta,capitalgreek,delta majuscule
+Ε,capital epsilon,capitalgreek,epsilon majuscule
+Ζ,capital zeta,capitalgreek,zêta majuscule
+Η,capital eta,capitalgreek,êta majuscule
+Θ,capital theta,capitalgreek,thêta majuscule
+Ι,capital iota,capitalgreek,iota majuscule
+Κ,capital kappa,capitalgreek,kappa majuscule
+Λ,capital lambda,capitalgreek,lambda majuscule
+Μ,capital mu,capitalgreek,mu majuscule
+Ν,capital nu,capitalgreek,nu majuscule
+Ξ,capital xi,capitalgreek,xi majuscule
+Π,capital pi,capitalgreek,pi majuscule
+Ο,capital omicron,capitalgreek,omicron majuscule
+Ρ,capital rho,capitalgreek,rho majuscule
+Σ,capital sigma,capitalgreek,sigma majuscule
+Τ,capital tau,capitalgreek,tau majuscule
+Υ,capital upsilon,capitalgreek,upsilon majuscule
+Φ,capital phi,capitalgreek,phi majuscule
+Χ,capital khi,capitalgreek,khi majuscule
+Ψ,capital psi,capitalgreek,psi majuscule
+Ω,capital omega,capitalgreek,omega majuscule
+α,small alpha,smallgreek,alpha minuscule
+β,small beta,smallgreek,béta minuscule
+ϐ,cursive beta,smallgreek,béta cursive minuscule
+γ,small gamma,smallgreek,gamma minuscule
+δ,small delta,smallgreek,delta minuscule
+ε,small epsilon,smallgreek,epsilon minuscule
+ζ,small zeta,smallgreek,zêta minuscule
+η,small eta,smallgreek,êta minuscule
+θ,small theta,smallgreek,thêta minuscule
+ϑ,curved theta,smallgreek,thêta incurvé minuscule
+ι,small iota,smallgreek,iota minuscule
+κ,small kappa,smallgreek,kappa minuscule
+ϰ,cursive kappa,smallgreek,kappa cursive minuscule
+λ,small lambda,smallgreek,lambda minuscule
+μ,small mu,smallgreek,mu minuscule
+ν,small nu,smallgreek,nu minuscule
+ξ,small xi,smallgreek,xi minuscule
+ο,small omicron,smallgreek,omicron minuscule
+π,small pi,smallgreek,pi minuscule
+ϖ,cursive pi,smallgreek,pi cursive minuscule
+ρ,small rho,smallgreek,rho minuscule
+ϱ,cursive rho,smallgreek,rho cursive minuscule
+σ,small sigma,smallgreek,sigma minuscule
+ς,final sigma,smallgreek,sigma final minuscule
+τ,small tau,smallgreek,tau minuscule
+υ,small upsilon,smallgreek,upsilon minuscule
+φ,cursive phi,smallgreek,phi cursive minuscule
+ϕ,small phi,smallgreek,phi minuscule
+χ,small khi,smallgreek,khi minuscule
+ψ,small psi,smallgreek,psi minuscule
+ω,small omega,smallgreek,omega minuscule
 2^n-1,mersenne's numbers,sequence,nombres de mersenne
 2^(2^n)+1,fermat's numbers,sequence,nombres de fermats
 F(n-1)+F(n-2),fibonnachi sequence,sequence,séquance de fibonnachi
