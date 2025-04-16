@@ -4,7 +4,6 @@ Configuration file for Discord math catch bot.
 Centralizes all configuration settings to avoid hard-coding values throughout the code.
 """
 
-
 # File paths
 TOKEN_FILE = "token"
 DATABASE = "inventory.db"
