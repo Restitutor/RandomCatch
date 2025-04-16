@@ -1,3 +1,0 @@
-aiosqlite
-py-cord[voice]
-audioop-lts
