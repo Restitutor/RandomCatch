@@ -122,9 +122,7 @@ async def on_text_message(message):
         if out:
             await message.reply(out)
         if caught:
-            await db.add_item(
-                message.author.id, game_state.last_catchable[message.channel.id], 1
-            )
+            await db.add_item(message.author.id, caught, 1)
 
         # Random drop chance on message
         if random.random() < RANDOM_DROP_CHANCE:
@@ -152,7 +150,7 @@ async def on_text_message(message):
                 await message.reply("You are not an admin.")
 
     except Exception as e:
-        logger.error(f"Error processing message: {e}")
+        logger.exception(f"Error processing message: {e}")
 
 
 @bot.command()

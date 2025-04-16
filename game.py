@@ -7,7 +7,7 @@ Handles the core game logic including catching and dropping items.
 import asyncio
 import random
 import time
-from typing import Dict, Tuple, Optional
+from typing import Dict, Literal, Tuple, Optional
 
 from config import DATA_FILE, ADMIN_IDS
 import db
@@ -86,7 +86,7 @@ class GameState:
 
     def try_catch_in_channel(
         self, channel_id: int, text: str
-    ) -> Tuple[Optional[str], bool]:
+    ) -> Tuple[Optional[str], Literal[False] | str]:
         """
         Attempts to catch an item in a channel based on the message text.
 
@@ -104,6 +104,7 @@ class GameState:
         out, caught = try_catch(key, self.catchables[key], text)
 
         if caught:
+            caught = self.last_catchable[channel_id]
             del self.last_catchable[channel_id]
 
         return out, caught
