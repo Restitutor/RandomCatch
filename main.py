@@ -23,6 +23,7 @@ from utils import logger
 
 # Bot setup
 bot = discord.Bot(
+    allowed_mentions=discord.AllowedMentions.none(),
     intents=discord.Intents.none()
     | discord.Intents.message_content
     | discord.Intents.guild_messages,
