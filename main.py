@@ -8,6 +8,7 @@ import asyncio
 import random
 
 import discord
+from discord.ext import bridge
 
 import game
 import db
@@ -22,8 +23,9 @@ from config import (
 from utils import logger
 
 # Bot setup
-bot = discord.Bot(
+bot = bridge.Bot(
     allowed_mentions=discord.AllowedMentions.none(),
+    command_prefix="!",
     intents=discord.Intents.none()
     | discord.Intents.message_content
     | discord.Intents.guild_messages,
@@ -66,6 +68,7 @@ async def on_ready():
 
         # Start random drop task
         await bot.wait_until_ready()
+        await bot.sync_commands()
         asyncio.create_task(
             game_state.random_drop_task(
                 bot.fetch_channel, ALLOWED_CHANNELS, RANDOM_DROP_TIME
@@ -93,30 +96,6 @@ async def on_text_message(message):
     try:
         text = message.clean_content
         user = message.author.id
-
-        # Help command
-        if "!help" in text:
-            await message.reply(
-                "Available commands: countobjects, inventory, completion, remaining"
-            )
-            return
-
-        # Count objects command
-        if "countobjects" in text:
-            await message.reply(f"There are {len(game_state.catchables)} to catch!")
-            return
-
-        # Inventory, completion, and remaining commands
-        if "inventory" in text or "completion" in text or "remaining" in text:
-            if "inventory" in text:
-                response = await game_state.list_inventory(get_user_id(message))
-            elif "remaining" in text:
-                response = await game_state.list_remaining(get_user_id(message))
-            else:
-                response = await game_state.list_completion(get_user_id(message))
-
-            await message.reply(response)
-            return
 
         # Check for catching attempt
         out, caught = game_state.try_catch_in_channel(message.channel.id, text)
@@ -154,8 +133,11 @@ async def on_text_message(message):
         logger.exception(f"Error processing message: {e}")
 
 
-@bot.command()
-async def inventory(ctx, user: discord.Option(discord.SlashCommandOptionType.user)):
+@bot.bridge_command(description="Shows user inventory.")
+@bridge.bridge_option(
+    "user", input_type=discord.SlashCommandOptionType.user, required=False
+)
+async def inventory(ctx: bridge.BridgeContext, user: discord.User | None):
     """
     Slash command to view a user's inventory.
 
@@ -163,6 +145,8 @@ async def inventory(ctx, user: discord.Option(discord.SlashCommandOptionType.use
         ctx: Command context
         user: User to view inventory for
     """
+    if user is None:
+        user = ctx.author
     try:
         if user.bot:
             await ctx.respond("That's a bot.")
@@ -173,8 +157,11 @@ async def inventory(ctx, user: discord.Option(discord.SlashCommandOptionType.use
         await ctx.respond("An error occurred while retrieving the inventory.")
 
 
-@bot.command()
-async def completion(ctx, user: discord.Option(discord.SlashCommandOptionType.user)):
+@bot.bridge_command(description="Shows user completion percentage.")
+@bridge.bridge_option(
+    "user", input_type=discord.SlashCommandOptionType.user, required=False
+)
+async def completion(ctx: bridge.BridgeContext, user: discord.User | None):
     """
     Slash command to view a user's completion percentage.
 
@@ -182,6 +169,8 @@ async def completion(ctx, user: discord.Option(discord.SlashCommandOptionType.us
         ctx: Command context
         user: User to view completion for
     """
+    if user is None:
+        user = ctx.author
     try:
         if user.bot:
             await ctx.respond("That's a bot.")
@@ -192,8 +181,11 @@ async def completion(ctx, user: discord.Option(discord.SlashCommandOptionType.us
         await ctx.respond("An error occurred while calculating completion.")
 
 
-@bot.command()
-async def remaining(ctx, user: discord.Option(discord.SlashCommandOptionType.user)):
+@bot.bridge_command(description="Shows user remaining items.")
+@bridge.bridge_option(
+    "user", input_type=discord.SlashCommandOptionType.user, required=False
+)
+async def remaining(ctx: bridge.BridgeContext, user: discord.User | None):
     """
     Slash command to view items a user hasn't caught yet.
 
@@ -201,6 +193,8 @@ async def remaining(ctx, user: discord.Option(discord.SlashCommandOptionType.use
         ctx: Command context
         user: User to view remaining items for
     """
+    if user is None:
+        user = ctx.author
     try:
         if user.bot:
             await ctx.respond("That's a bot.")
@@ -209,6 +203,11 @@ async def remaining(ctx, user: discord.Option(discord.SlashCommandOptionType.use
     except Exception as e:
         logger.error(f"Error executing remaining command: {e}")
         await ctx.respond("An error occurred while retrieving remaining items.")
+
+
+@bot.bridge_command()
+async def countobjects(ctx):
+    await ctx.respond(f"There are {len(game_state.catchables)} to catch!")
 
 
 if __name__ == "__main__":
