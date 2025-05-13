@@ -344,6 +344,35 @@ async def list_inventory(user: int, catchables: Dict[str, Tuple[str, ...]]) -> s
         return f"Error retrieving inventory: {str(e)}"
 
 
+async def get_leaderboard(**kwargs) -> str:
+    result = await db.leaderboard(**kwargs)
+    if not result:
+        return "No users found!"
+
+    output = "## Leaderboard\n"
+    emojis = ["🥇", "🥈", "🥉", "⌨️"]
+
+    pos = 0
+    for user, count in result.items():
+        try:
+            prefix = emojis[pos]
+        except IndexError:
+            prefix = f"**#{pos + 1}**"
+
+        output += f"{prefix} <@{user}>: {count}\n"
+        pos += 1
+
+    return output.rstrip()
+
+
+async def leaderboard_info(**kwargs) -> str:
+    try:
+        return await get_leaderboard(**kwargs)
+    except Exception as e:
+        logger.error(f"Error executing inventory command: {e}")
+        return "An error occurred while retrieving the xp."
+
+
 async def list_completion(user: int, catchables: Dict[str, Tuple[str, ...]]) -> str:
     """
     Calculates and returns the user's completion percentage.
@@ -359,7 +388,7 @@ async def list_completion(user: int, catchables: Dict[str, Tuple[str, ...]]) -> 
         logger.info(f"Calculating completion for user {user}")
         items = await db.list_items(user)
         count = len(items)
-        return f"They have {count} items, so their MathDex progression is {round(count*100/len(catchables), 2)}%"
+        return f"They have {count} items, so their MathDex progression is {round(count * 100 / len(catchables), 2)}%"
     except Exception as e:
         logger.error(f"Error calculating completion: {e}")
         return f"Error calculating completion: {str(e)}"

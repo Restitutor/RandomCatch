@@ -206,6 +206,11 @@ async def remaining(ctx: bridge.BridgeContext, user: discord.User | None):
 
 
 @bot.bridge_command()
+async def leaderboard(ctx):
+    await ctx.respond(await game.leaderboard_info())
+
+
+@bot.bridge_command()
 async def countobjects(ctx):
     await ctx.respond(f"There are {len(game_state.catchables)} to catch!")
 

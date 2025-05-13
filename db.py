@@ -85,6 +85,30 @@ async def list_items(user: int) -> Dict[str, int]:
         raise
 
 
+async def leaderboard(limit: int = 10) -> dict[str, int]:
+    """Lists top 10 by xp.
+
+    Returns:
+        Dictionary mapping user IDs to quantities
+
+    """
+    try:
+        async with (
+            aiosqlite.connect(DATABASE) as db,
+            db.execute(
+                "SELECT User, count(distinct Item) as c FROM inventories group by User order by c desc limit ?",
+                (limit,),
+            ) as cursor,
+        ):
+            rows = await cursor.fetchall()
+            result = {row[0]: row[1] for row in rows}
+        logger.info(f"Retrieved {len(result)} results.")
+        return result
+    except Exception as e:
+        logger.error(f"Error listing items from inventory: {e}")
+        raise
+
+
 async def prune_item(catchables: Tuple[str, ...]) -> None:
     """
     Removes items from the database that are not in the catchables list.
