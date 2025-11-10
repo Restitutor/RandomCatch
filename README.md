@@ -5,7 +5,7 @@ A Discord bot that allows users to catch math objects that randomly appear in de
 ## Project Structure
 
 ```
-├── discordbot.py    # Main entry point and Discord event handling
+├── main.py    # Main entry point and Discord event handling
 ├── config.py        # Centralized configuration
 ├── db.py            # Database operations
 ├── game.py          # Game mechanics and logic
