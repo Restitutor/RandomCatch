@@ -11,20 +11,24 @@ A Discord bot that allows users to catch math objects that randomly appear in de
 ├── game.py          # Game mechanics and logic
 ├── utils.py         # Utility functions
 ├── data.csv         # CSV file containing catchable items
-├── token            # Discord bot token
+├── token            # Discord bot token (has to be added)
 └── inventory.db     # SQLite database for storing user inventories
 ```
 
 ## How to Run
 
-1. Ensure you have the required dependencies installed:
+1. Ensure you have uv installed:
    ```
-   pip install -r requirements.txt
+   pip install uv
    ```
 
 2. Make sure you have a valid Discord bot token in a file named `token`
 
 3. Run the bot:
+   ```
+   uv run bot.py
+   ```
+   if you're running the first time, else a normal run will do:
    ```
    python bot.py
    ```
