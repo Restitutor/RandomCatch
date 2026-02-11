@@ -1,15 +1,10 @@
 [project]
 name = "RandomCatch"
-version = "1.1"
+version = "2.0"
 description = "A Discord bot that allows users to catch math objects that randomly appear in designated channels."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "aiosqlite>=0.21.0",
-    "audioop-lts>=0.2.1",
-    "py-cord>=2.6.1",
-    "rapidfuzz>=3.14"
+    "discord.py>=2.6.0",
 ]
-
-[tool.poetry.dev-dependencies]
-pytest = "^7.0"
