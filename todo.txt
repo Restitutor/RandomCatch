@@ -1,0 +1,18 @@
+1. add roles and support for changes in the json, owners are me and res:
+/role user admin/serveradmin/reset
+Would be a command only executable by owners
+admin are global serveradmin, serveradmin can customize the bot in their servers (for exemple, where object can spawn)
+2. Make so it only spawn by random chance on specific channels, configurable
+You could set by
+/spawnrules probability channel probability
+So for exemple 2% in channel 156 would be
+/spawnrules probability 156 0.02
+You can also remove
+/spawnrules probability 156 0
+act as removing
+3. Add configuration about time spawning
+/spawnrules time 156 3600
+Woul make so each item spawns in channel 156 every 3600.
+To remove:
+/spawnrules time 156 0
+2. and 3. can be only edited by server admins (or admins or higher)

@@ -5,7 +5,7 @@ A Discord bot that allows users to catch math objects that randomly appear in de
 ## Project Structure
 
 ```
-├── main.py    # Main entry point and Discord event handling
+├── discordbot.py    # Main entry point and Discord event handling
 ├── config.py        # Centralized configuration
 ├── db.py            # Database operations
 ├── game.py          # Game mechanics and logic
@@ -24,7 +24,22 @@ A Discord bot that allows users to catch math objects that randomly appear in de
 
 2. Make sure you have a valid Discord bot token in a file named `token`
 
-3. Run the bot, for that you can either run the start.sh file, or run the main.py file using uv (`uv run main.py`)
+3. Run the bot:
+   ```
+   uv run bot.py
+   ```
+   if you're running the first time, else a normal run will do:
+   ```
+   python bot.py
+   ```
+
+4. Running tests
+
+   Install pytest and run the tests:
+   ```
+   python -m pip install -U pytest
+   pytest -q
+   ```
 
 ## Commands
 
@@ -40,3 +55,10 @@ A Discord bot that allows users to catch math objects that randomly appear in de
 - `/inventory @user` - Shows a user's inventory
 - `/completion @user` - Shows a user's completion percentage
 - `/remaining @user` - Shows what a user hasn't caught yet
+
+New admin slash commands
+
+- `/role add|remove|list|reset` - Manage bot-level roles. Owner-only.
+- `/spawnrules probability <channel> <float>` - Set per-channel spawn probability (0-1). Use 0 to remove.
+- `/spawnrules time <channel> <seconds>` - Set per-channel guaranteed spawn interval (seconds). Use 0 to remove.
+- `/spawnrules list|remove` - List or remove rules for a channel or guild.

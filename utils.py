@@ -8,6 +8,9 @@ import os
 import sys
 import asyncio
 import logging
+import json
+import tempfile
+from typing import Any
 
 # Set up logging
 logging.basicConfig(
@@ -75,3 +78,55 @@ def read_csv(filepath: str) -> dict[str, tuple[str, ...]]:
     except Exception as e:
         logger.error(f"Error reading CSV file {filepath}: {e}")
         raise
+
+
+def load_json(filepath: str, default: Any = None) -> Any:
+    """
+    Load JSON from `filepath`. If file does not exist, return `default` (or {}).
+
+    This function handles JSON decode errors by logging and returning the default.
+    """
+    if default is None:
+        default = {}
+
+    try:
+        with open(filepath, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        logger.info(f"JSON file not found, returning default for {filepath}")
+        return default
+    except json.JSONDecodeError as e:
+        logger.error(f"JSON decode error reading {filepath}: {e}")
+        return default
+    except Exception as e:
+        logger.error(f"Unexpected error reading JSON {filepath}: {e}")
+        return default
+
+
+def save_json(filepath: str, data: Any) -> None:
+    """
+    Atomically write JSON `data` to `filepath`.
+
+    Writes to a temporary file then replaces the destination to avoid partial writes.
+    """
+    dirpath = os.path.dirname(os.path.abspath(filepath)) or "."
+    try:
+        with tempfile.NamedTemporaryFile("w", dir=dirpath, delete=False, encoding="utf-8") as tf:
+            json.dump(data, tf, ensure_ascii=False, indent=2)
+            tf.flush()
+            os.fsync(tf.fileno())
+            tempname = tf.name
+
+        os.replace(tempname, filepath)
+        logger.info(f"Saved JSON to {filepath}")
+    except Exception as e:
+        logger.error(f"Error saving JSON to {filepath}: {e}")
+
+
+def ensure_json_file(filepath: str, default: Any = None) -> None:
+    """Ensure a JSON file exists at `filepath`. If missing, write `default` into it."""
+    if default is None:
+        default = {}
+
+    if not os.path.exists(filepath):
+        save_json(filepath, default)
