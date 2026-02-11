@@ -7,11 +7,23 @@ Handles the core game logic including catching and dropping items.
 import asyncio
 import random
 import time
+from utils import load_json, save_json
 from typing import Dict, Literal, Tuple, Optional
 
-from config import DATA_FILE, ADMIN_IDS
+from config import DATA_FILE, ADMIN_IDS, RANDOM_DROP_CHANCE
 import db
 from utils import logger, read_csv
+from rapidfuzz import process
+
+def find_closest_word(input_word: str, candidates: list[str], threshold: float = 75.0):
+    if not candidates:
+        return None
+    match = process.extractOne(input_word, candidates)
+    if match:
+        best_word, score, _ = match
+        if score >= threshold:
+            return best_word
+    return None
 
 
 class GameState:
@@ -23,6 +35,143 @@ class GameState:
         self.catchables: Dict[str, Tuple[str, ...]] = {}
         self.last_catchable: Dict[int, str] = {}
         self.last_summon: Dict[int, int] = {}
+        # manage per-channel spawn worker tasks: cid (str) -> asyncio.Task
+        self._spawn_tasks: Dict[str, asyncio.Task] = {}
+
+    async def _spawn_worker(self, cid: str, channel_getter):
+        """Worker that waits until the configured timer elapses, then attempts a spawn.
+
+        This worker will loop: compute remaining time until next allowed spawn for the
+        channel (based on `last_spawn` and configured timer), sleep until then, then
+        apply the per-channel probability and summon if probability matches.
+        It updates `spawn_rules.json` last_spawn timestamp after successful spawn.
+        """
+        try:
+            while True:
+                try:
+                    rules = await asyncio.to_thread(load_json, "spawn_rules.json", {"guilds": {}, "last_spawn": {}})
+                except Exception:
+                    rules = {"guilds": {}, "last_spawn": {}}
+
+                guilds = rules.get("guilds", {})
+                # find the guild_rules that owns this channel or default
+                guild_rules = None
+                for gid, gdata in guilds.items():
+                    if cid in gdata.get("timers", {}) or cid in gdata.get("probabilities", {}):
+                        guild_rules = gdata
+                        break
+
+                if guild_rules is None:
+                    guild_rules = guilds.get("default", {})
+
+                timer = guild_rules.get("timers", {}).get(cid)
+                if timer is None:
+                    # no timer configured anymore -> stop worker
+                    return
+
+                last_spawn = rules.get("last_spawn", {}).get(cid)
+                now = int(time.time())
+                # compute sleep time until next allowed spawn
+                if last_spawn is None:
+                    wait = int(timer)
+                else:
+                    elapsed = now - int(last_spawn)
+                    wait = max(0, int(timer) - int(elapsed))
+
+                # sleep until it's time
+                if wait > 0:
+                    await asyncio.sleep(wait)
+
+                # reload rules (they may have changed)
+                try:
+                    rules = await asyncio.to_thread(load_json, "spawn_rules.json", {"guilds": {}, "last_spawn": {}})
+                except Exception:
+                    rules = {"guilds": {}, "last_spawn": {}}
+
+                guilds = rules.get("guilds", {})
+                # recompute guild_rules & probability
+                guild_rules = None
+                for gid, gdata in guilds.items():
+                    if cid in gdata.get("timers", {}) or cid in gdata.get("probabilities", {}):
+                        guild_rules = gdata
+                        break
+
+                if guild_rules is None:
+                    guild_rules = guilds.get("default", {})
+
+                raw_prob = guild_rules.get("probabilities", {}).get(cid, None)
+                try:
+                    if raw_prob is None:
+                        prob = float(RANDOM_DROP_CHANCE)
+                    else:
+                        prob = float(raw_prob)
+                        if prob <= 0:
+                            logger.info(f"Channel {cid} has stored probability {raw_prob}; treating as no-specific-rule and using fallback {RANDOM_DROP_CHANCE}")
+                            prob = float(RANDOM_DROP_CHANCE)
+                except Exception:
+                    prob = float(RANDOM_DROP_CHANCE)
+
+                logger.debug(f"Scheduled spawn check for channel {cid}: prob={prob}, timer={timer}, last_spawn={last_spawn}")
+
+                # If timer worker woke, perform an unconditional spawn (timer guarantees drop)
+                try:
+                    # if this worker ran because wait reached zero, spawn unconditionally
+                    channel_id = int(cid)
+                    channel = await channel_getter(channel_id)
+                    msg, key = await self.summon(channel_id)
+                    try:
+                        await channel.send(msg)
+                    except Exception:
+                        pass
+                    logger.info(f"Scheduled drop in channel {channel_id}: {key}")
+
+                    rules.setdefault("last_spawn", {})[cid] = int(time.time())
+                    try:
+                        await asyncio.to_thread(save_json, "spawn_rules.json", rules)
+                    except Exception as e:
+                        logger.error(f"Failed to save spawn_rules.json: {e}")
+                except Exception as e:
+                    logger.error(f"Error scheduling drop for channel {cid}: {e}")
+                # loop to wait again until next timer
+        except asyncio.CancelledError:
+            # expected when cancelling the worker
+            return
+        except Exception as e:
+            logger.error(f"Unhandled error in _spawn_worker for {cid}: {e}")
+
+    async def _ensure_spawn_tasks(self, channel_getter):
+        """Ensure per-channel spawn worker tasks exist for channels with timers.
+
+        Starts tasks for new channels and cancels tasks for channels whose timers
+        have been removed from `spawn_rules.json`.
+        """
+        try:
+            rules = await asyncio.to_thread(load_json, "spawn_rules.json", {"guilds": {}, "last_spawn": {}})
+        except Exception:
+            rules = {"guilds": {}, "last_spawn": {}}
+
+        guilds = rules.get("guilds", {})
+        configured = set()
+        for gid, gdata in guilds.items():
+            configured.update(map(str, gdata.get("timers", {}).keys()))
+
+        # start tasks for new configured channels
+        for cid in configured:
+            if cid not in self._spawn_tasks or self._spawn_tasks[cid].done():
+                try:
+                    task = asyncio.create_task(self._spawn_worker(cid, channel_getter))
+                    self._spawn_tasks[cid] = task
+                except Exception as e:
+                    logger.error(f"Failed to start spawn worker for {cid}: {e}")
+
+        # cancel tasks for channels no longer configured
+        for cid in list(self._spawn_tasks.keys()):
+            if cid not in configured:
+                t = self._spawn_tasks.pop(cid)
+                try:
+                    t.cancel()
+                except Exception:
+                    pass
 
     def initialize(self, filepath: str = DATA_FILE) -> None:
         """
@@ -109,7 +258,7 @@ class GameState:
 
         return out, caught
 
-    async def list_inventory(self, user_id: int) -> str:
+    async def list_inventory(self, user_id: int, category: str ='all') -> str:
         """
         Lists items in a user's inventory.
 
@@ -119,7 +268,7 @@ class GameState:
         Returns:
             Message containing inventory
         """
-        return await list_inventory(user_id, self.catchables)
+        return await list_inventory(user_id, self.catchables, category)
 
     async def list_completion(self, user_id: int) -> str:
         """
@@ -158,14 +307,98 @@ class GameState:
 
         while True:
             try:
-                if allowed_channels:
-                    channel_id = random.choice(allowed_channels)
-                    channel = await channel_getter(channel_id)
+                # Ensure per-channel workers are running for configured timers
+                try:
+                    await self._ensure_spawn_tasks(channel_getter)
+                except Exception as e:
+                    logger.error(f"Error ensuring spawn tasks: {e}")
 
-                    msg, key = await self.summon(channel_id)
+                # Load spawn rules and collect configured channels
+                try:
+                    rules = await asyncio.to_thread(load_json, "spawn_rules.json", {"guilds": {}, "last_spawn": {}})
+                except Exception:
+                    rules = {"guilds": {}, "last_spawn": {}}
 
-                    await channel.send(msg)
-                    logger.info(f"Random drop in channel {channel_id}: {key}")
+                guilds = rules.get("guilds", {})
+                # gather all channel ids mentioned in probabilities or timers
+                channel_ids = set()
+                for gid, gdata in guilds.items():
+                    channel_ids.update(map(str, gdata.get("probabilities", {}).keys()))
+                    channel_ids.update(map(str, gdata.get("timers", {}).keys()))
+
+                # fallback to allowed_channels if nothing configured
+                if not channel_ids and allowed_channels:
+                    channel_ids = set(str(c) for c in allowed_channels)
+
+                now = int(time.time())
+
+                for cid in list(channel_ids):
+                    # skip channels that have a timer: handled by per-channel workers
+                    # if a channel has a configured timer, the worker will spawn it exactly when due
+                    # so the periodic loop should not attempt to spawn it here
+                    has_timer = any(cid in g.get("timers", {}) for g in guilds.values())
+                    if has_timer:
+                        continue
+
+                for cid in list(channel_ids):
+                    try:
+                        channel_id = int(cid)
+                    except Exception:
+                        continue
+
+                    try:
+                        # find guild that contains this channel rule, or default
+                        guild_rules = None
+                        for gid, gdata in guilds.items():
+                            if cid in gdata.get("probabilities", {}) or cid in gdata.get("timers", {}):
+                                guild_rules = gdata
+                                break
+
+                        if guild_rules is None:
+                            guild_rules = guilds.get("default", {})
+
+                        timer = guild_rules.get("timers", {}).get(cid)
+                        last_spawn = rules.get("last_spawn", {}).get(cid)
+
+                        time_ok = True
+                        if timer is not None:
+                            if last_spawn is None or (now - int(last_spawn)) >= int(timer):
+                                time_ok = True
+                            else:
+                                time_ok = False
+
+                        raw_prob = guild_rules.get("probabilities", {}).get(cid, None)
+                        try:
+                            if raw_prob is None:
+                                prob = float(RANDOM_DROP_CHANCE)
+                            else:
+                                prob = float(raw_prob)
+                                if prob <= 0:
+                                    logger.info(f"Channel {cid} has stored probability {raw_prob}; treating as no-specific-rule and using fallback {RANDOM_DROP_CHANCE}")
+                                    prob = float(RANDOM_DROP_CHANCE)
+                        except Exception:
+                            prob = float(RANDOM_DROP_CHANCE)
+
+                        logger.debug(f"Periodic spawn check for channel {cid}: time_ok={time_ok}, prob={prob}, timer={timer}, last_spawn={last_spawn}")
+
+                        if time_ok and random.random() < float(prob):
+                            channel = await channel_getter(channel_id)
+                            msg, key = await self.summon(channel_id)
+                            try:
+                                await channel.send(msg)
+                            except Exception:
+                                # channel may be DM or unavailable; ignore send errors
+                                pass
+                            logger.info(f"Random drop in channel {channel_id}: {key}")
+
+                            # update last_spawn timestamp for this channel
+                            rules.setdefault("last_spawn", {})[cid] = now
+                            try:
+                                await asyncio.to_thread(save_json, "spawn_rules.json", rules)
+                            except Exception as e:
+                                logger.error(f"Failed to save spawn_rules.json: {e}")
+                    except Exception as e:
+                        logger.error(f"Error processing channel {cid} in random_drop_task: {e}")
 
                 await asyncio.sleep(interval)
             except Exception as e:
@@ -205,12 +438,27 @@ def try_catch(
         Tuple of (message, caught)
     """
     out = None
-
-    for alias in aliases:
-        if alias in text:
+    # normalize to lowercase for case-insensitive matching
+    text: str = text.lower() if isinstance(text, str) else ""
+    aliases_lower: Tuple[str, ...] = tuple(a.lower() for a in aliases if isinstance(a, str))
+    # Exact substring match first
+    for alias, alias_lower in zip(aliases, aliases_lower):
+        if alias_lower in text:
             out = f"Caught {key} -> {alias}"
             logger.info(f"User caught {key} with alias '{alias}'")
             return out, True
+
+    # Fuzzy match: check each word in the message against aliases
+    # Split on whitespace and punctuation lightly
+    words = [w.strip(".,!?;:()[]\"'`)" ) for w in text.split() if w]
+    if words and aliases:
+        candidate_list = list(aliases)
+        for w in words:
+            match = find_closest_word(w, candidate_list, threshold=50.0)
+            if match:
+                out = f"Caught {key} -> {match}"
+                logger.info(f"User fuzzy-caught {key}: message word '{w}' matched '{match}'")
+                return out, True
 
     if "catch" in text:
         out = "That is not the right name.."
@@ -220,7 +468,7 @@ def try_catch(
 
 
 async def drop(
-    channel_id: int, catchables: Dict[str, Tuple[str, ...]], user_id: int = None
+    channel_id: int, catchables: Dict[str, Tuple[str, ...]], user_id: Optional[int] = None
 ) -> Tuple[str, str]:
     """
     Drops a catchable item in the channel, with higher probability for items
@@ -244,7 +492,7 @@ async def drop(
     else:
         try:
             # Get user's current inventory
-            inventory = await db.list_items(user_id)
+            inventory = await db.list_items(user_id, 'all')
 
             # Split items into two lists: new items and duplicates
             new_items = [item for item in catchables.keys() if item not in inventory]
@@ -311,7 +559,7 @@ async def list_remaining(user: int, catchables: Dict[str, Tuple[str, ...]]) -> s
         return f"Error retrieving remaining items: {str(e)}"
 
 
-async def list_inventory(user: int, catchables: Dict[str, Tuple[str, ...]]) -> str:
+async def list_inventory(user: int, catchables: Dict[str, Tuple[str, ...]], category: str = 'all') -> str:
     """
     Lists items in a user's inventory.
 
@@ -323,7 +571,7 @@ async def list_inventory(user: int, catchables: Dict[str, Tuple[str, ...]]) -> s
         Message containing inventory
     """
     try:
-        items = await db.list_items(user)
+        items = await db.list_items(user, category)
         if items:
             out = "Inventory\n"
             for k, names in catchables.items():

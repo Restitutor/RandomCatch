@@ -11,7 +11,7 @@ DATA_FILE = "data.csv"
 
 # Game configuration
 RANDOM_DROP_TIME = 3600  # Seconds between random drops
-RANDOM_DROP_CHANCE = 0.02  # 2% chance of random drop on message
+RANDOM_DROP_CHANCE = 0  # 2% chance of random drop on message
 
 # Discord configuration
 ALLOWED_CHANNELS = (1211674089073279106,)
