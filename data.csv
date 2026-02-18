@@ -310,8 +310,8 @@ O(),symbols,asymptotic complexity notation,complexité asymptotique
 o(),symbols,little-o notation,notation petit-o
 A²+B²=C²,theorems,pythagoras theorem,théorème de pythagore
 A²+B²-2ab*cos(c)=C²,theorems,law of cosines,théorème d'al-kashi
-a^b mod b = a,symboltheorems,fermat's little theorem,le petit théorème de fermat
-(a+b)(a-b)=a²-b²,symbolstheorems,difference of squares,différence de carrés
+a^b mod b = a,theorems,fermat's little theorem,le petit théorème de fermat
+(a+b)(a-b)=a²-b²,theorems,difference of squares,différence de carrés
 a+b=b+a,theorems,community,communité
 a+(b+c)=(a+b)+c,theorems,assosiativity,assosiativité
 a(b+c)=ab+ac,theorems,distributivity,distributivité
