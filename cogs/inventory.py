@@ -80,6 +80,16 @@ class InventoryCog(commands.Cog):
 
         await ctx.send(text[:DISCORD_MESSAGE_LIMIT])
 
+    @inventory.error
+    async def inventory_error(
+        self, ctx: commands.Context, error: commands.CommandError
+    ) -> None:
+        if isinstance(error, commands.BadLiteralArgument) and error.param.name == "category":
+            valid = ", ".join(f"`{v}`" for v in error.literals)
+            await ctx.send(f"Invalid category. Valid options: {valid}")
+        else:
+            raise error
+
     @commands.hybrid_command(description="Shows user completion percentage")
     async def completion(
         self,
