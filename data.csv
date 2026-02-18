@@ -126,13 +126,13 @@ key,category,en,fr
 ℵ₀,constants,aleph null,aleph nul
 ℵ₁,constants,aleph one,aleph un
 𝔠,constants,cardinality of continuum,cardinal du continu
-"Cl(p,q)",functions,clifford algebra,algèbre de clifford
-Λⁿ(V),functions,exterior algebra,algèbre extérieure
-"Hom(A,B)",functions,homomorphisms,homomorphismes
-End(A),functions,endomorphisms,endomorphismes
-Aut(A),functions,automorphisms,automorphismes
-Obj(C),functions,objects of category,objets de la catégorie
-Mor(C),functions,morphisms of category,morphismes de la catégorie
+"Cl(p,q)",symbols,clifford algebra,algèbre de clifford
+Λⁿ(V),symbols,exterior algebra,algèbre extérieure
+"Hom(A,B)",symbols,homomorphisms,homomorphismes
+End(A),symbols,endomorphisms,endomorphismes
+Aut(A),symbols,automorphisms,automorphismes
+Obj(C),symbols,objects of category,objets de la catégorie
+Mor(C),symbols,morphisms of category,morphismes de la catégorie
 ∂A,symbols,boundary of set,frontière de l'ensemble
 int(A),symbols,interior of set,intérieur de l'ensemble
 cl(A),symbols,closure of set,fermeture de l'ensemble
@@ -269,54 +269,52 @@ Arg(z),functions,argument,argument
 ⨄,functions,disjoint union,union disjointe
 det(A),functions,determinant,déterminant
 E[X],functions,expectation,espérance
-Var(X),theorems,variance,variance
-"Cov(X,Y)",theorems,covariance,covariance
-φ(n),theorems,euler totient function,fonction indicatrice d'euler
-μ(n),theorems,mobius function,fonction de möbius
-λ(n),theorems,carmichael function,fonction de carmichael
-ω(n),theorems,number of prime factors,nombre de facteurs premiers
-Ω(n),theorems,number of prime factors,nombre de facteurs premiers
-Ai(x),symbols,airy function,fonction d'airy
-Bi(x),symbols,bairy function,fonction de bairy
-erf(x),symbols,error function,fonction d'erreur
-erfc(x),symbols,complementary error function,fonction d'erreur complémentaire
-Ei(x),symbols,exponential integral,fonction intégrale exponentielle
-Γ⁻¹(x),symbols,inverse gamma function,fonction gamma inverse
-ζ'(s),symbols,derivative of zeta function,dérivée de la fonction zêta
-η(s),symbols,dirichlet eta function,fonction eta de dirichlet
-β(s),symbols,dirichlet beta function,fonction beta de dirichlet
-χ(n),symbols,dirichlet character,caractère de dirichlet
-θ(x),symbols,heaviside step function,fonction échelon de heaviside
-Θ(x),symbols,theta function,fonction thêta
-δ(x),symbols,dirac delta function,fonction delta de dirac
-ψ⁽ⁿ⁾(x),symbols,polygamma function,fonction polygamma
-"B(x,y)",symbols,beta function,fonction beta
-Liₙ(x),symbols,polylogarithm function,fonction polylogarithm
-W(x),symbols,lambert w function,fonction w de lambert
-E₁(x),symbols,exponential integral variant,fonction intégrale exponentielle variante
-Si(x),symbols,sine integral,fonction intégrale sinus
-Ci(x),symbols,cosine integral,fonction intégrale cosinus
-Ai'(x),symbols,derivative of airy ai,derivée de la fonction d'airy ai
-Bi'(x),symbols,derivative of bairy bi,derivée de la fonction d'bairy bi
-Ξ(s),symbols,riemann xi function,fonction xi de riemann
-Δ(x),symbols,discriminant,discriminant
-disc(f),symbols,discriminant of polynomial f,discriminant du polynôme f
-"Res(f,g)",symbols,resultant,résultant
-Tr(A),symbols,trace of a matrix,trace d'une matrice
-Ker(A),symbols,kernel of a matrix,noyau d'une matrice
-Im(A),symbols,image of a matrix,image d'une matrice
-rank(A),symbols,rank of matrix,rank d'une matrice
-Span(V),symbols,span of vector space,span d'un espace vectoriel
-diag(A),symbols,diagonal of matrix,diagonale d'une matrice
+Var(X),functions,variance,variance
+"Cov(X,Y)",functions,covariance,covariance
+φ(n),functions,euler totient function,fonction indicatrice d'euler
+μ(n),functions,mobius function,fonction de möbius
+λ(n),functions,carmichael function,fonction de carmichael
+ω(n),functions,number of prime factors,nombre de facteurs premiers
+Ω(n),functions,number of prime factors,nombre de facteurs premiers
+Ai(x),functions,airy function,fonction d'airy
+Bi(x),functions,bairy function,fonction de bairy
+erf(x),functions,error function,fonction d'erreur
+erfc(x),functions,complementary error function,fonction d'erreur complémentaire
+Ei(x),functions,exponential integral,fonction intégrale exponentielle
+Γ⁻¹(x),functions,inverse gamma function,fonction gamma inverse
+ζ'(s),functions,derivative of zeta function,dérivée de la fonction zêta
+η(s),functions,dirichlet eta function,fonction eta de dirichlet
+β(s),functions,dirichlet beta function,fonction beta de dirichlet
+χ(n),functions,dirichlet character,caractère de dirichlet
+θ(x),functions,heaviside step function,fonction échelon de heaviside
+Θ(x),functions,theta function,fonction thêta
+δ(x),functions,dirac delta function,fonction delta de dirac
+ψ⁽ⁿ⁾(x),functions,polygamma function,fonction polygamma
+"B(x,y)",functions,beta function,fonction beta
+Liₙ(x),functions,polylogarithm function,fonction polylogarithm
+W(x),functions,lambert w function,fonction w de lambert
+E₁(x),functions,exponential integral variant,fonction intégrale exponentielle variante
+Ai'(x),functions,derivative of airy ai,derivée de la fonction d'airy ai
+Bi'(x),functions,derivative of bairy bi,derivée de la fonction d'bairy bi
+Ξ(s),functions,riemann xi function,fonction xi de riemann
+Δ(x),functions,discriminant,discriminant
+disc(f),functions,discriminant of polynomial f,discriminant du polynôme f
+"Res(f,g)",functions,resultant,résultant
+Tr(A),functions,trace of a matrix,trace d'une matrice
+Ker(A),functions,kernel of a matrix,noyau d'une matrice
+Im(A),functions,image of a matrix,image d'une matrice
+rank(A),functions,rank of matrix,rank d'une matrice
+Span(V),functions,span of vector space,span d'un espace vectoriel
+diag(A),functions,diagonal of matrix,diagonale d'une matrice
 O(),symbols,asymptotic complexity notation,complexité asymptotique
 o(),symbols,little-o notation,notation petit-o
-A²+B²=C²,symbols,pythagoras theorem,théorème de pythagore
-A²+B²-2ab*cos(c)=C²,symbols,law of cosines,théorème d'al-kashi
-a^b mod b = a,symbols,fermat's little theorem,le petit théorème de fermat
-(a+b)(a-b)=a²-b²,symbols,difference of squares,différence de carrés
-a+b=b+a,symbols,community,communité
-a+(b+c)=(a+b)+c,symbols,assosiativity,assosiativité
-a(b+c)=ab+ac,symbols,distributivity,distributivité
+A²+B²=C²,theorems,pythagoras theorem,théorème de pythagore
+A²+B²-2ab*cos(c)=C²,theorems,law of cosines,théorème d'al-kashi
+a^b mod b = a,symboltheorems,fermat's little theorem,le petit théorème de fermat
+(a+b)(a-b)=a²-b²,symbolstheorems,difference of squares,différence de carrés
+a+b=b+a,theorems,community,communité
+a+(b+c)=(a+b)+c,theorems,assosiativity,assosiativité
+a(b+c)=ab+ac,theorems,distributivity,distributivité
 +,symbols,plus,plus
 ×,symbols,times,fois
 ⋅,symbols,cdot,point médiant
@@ -387,10 +385,10 @@ liminf,functions,limit inferior,limite inférieure
 ∼,symbols,tilde operator,tilde
 ∿,symbols,sine wave,onde sinus
 ≅,symbols,approximately equal to,approximativement égale à
-≈,sequence,almost equal to,presque égale à
-≝,sequence,equal by definition,égale par définition
-⊤,sequence,true,vrai
-⇐,sequence,reverse implication,implication inverse
+≈,symbols,almost equal to,presque égale à
+≝,symbols,equal by definition,égale par définition
+⊤,symbols,true,vrai
+⇐,symbols,reverse implication,implication inverse
 ≔,symbols,defined as,défini comme
 ≜,symbols,definition symbol,symbole de définition
 ◇,symbols,possibility,possibilité
