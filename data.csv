@@ -117,12 +117,12 @@ key,category,en,fr
 ℚ,sets,rational numbers set,ensemble des nombres rationnels
 ℚₚ,sets,p-adic numbers,nombres p-adiques
 ℝ,sets,real numbers set,ensemble des nombres réels
-★ℝ,sets,hyperreals,nombres hyperréels
+★ℝ,sets,hyperreal number set,nombres hyperréels
 𝕋,sets,transcendantal numbers set,ensemble des nombres transcendentaux
 ℤ,sets,integers set,ensemble des nombres entiers relatifs
-ℤ-,constants,nonpositive integers set,ensemble des nombres négatifs
-ℤ-*,constants,negative integers set,ensemble des nombres négatifs non-nul
-ℤ[i],constants,gaussian integers set,ensemble des nombres entiers de gausse
+ℤ-,sets,nonpositive integers set,ensemble des nombres négatifs
+ℤ-*,sets,negative integers set,ensemble des nombres négatifs non-nul
+ℤ[i],sets,gaussian integers set,ensemble des nombres entiers de gausse
 ℵ₀,constants,aleph null,aleph nul
 ℵ₁,constants,aleph one,aleph un
 𝔠,constants,cardinality of continuum,cardinal du continu
@@ -156,25 +156,25 @@ cl(A),symbols,closure of set,fermeture de l'ensemble
 1.414213562...,constants,square root of 2,racine carrée de 2
 6.283185306...,constants,tau,tau
 ℏ,constants,reduced planck constant,constante de planck réduite
-σ(n),constants,sigma function,fonction sigma
-s(n),constants,aliquot sum,somme aliquot
-sin(θ),constants,sine,sinus
-cos(θ),constants,cosine,cosinus
-tan(θ),constants,tangent,tangente
-cot(θ),constants,cotangent,cotangente
-sec(θ),constants,secant,sécante
-csc(θ),constants,cosecant,cosecant
-arcsin(θ),constants,arcsine,arcsinus
-arccos(θ),constants,arccosine,arccosinus
-arctan(θ),constants,arctangent,arctangente
-arccot(θ),constants,arccotangent,arccotangente
-arcsec(θ),constants,arcsecant,arcsécante
-arccsc(θ),constants,arccosecant,arccosécante
-sinh(θ),constants,hyperbolic sine,sinus hyperbolique
-cosh(θ),constants,hyperbolic cosine,cosinus hyperbolique
-tanh(θ),constants,hyperbolic tangent,tangente hyperbolique
-coth(θ),constants,hyperbolic cotangent,cotangente hyperbolique
-sech(θ),constants,hyperbolic secant,sécante hyperbolique
+σ(n),functions,sigma function,fonction sigma
+s(n),functions,aliquot sum,somme aliquot
+sin(θ),functions,sine,sinus
+cos(θ),functions,cosine,cosinus
+tan(θ),functions,tangent,tangente
+cot(θ),functions,cotangent,cotangente
+sec(θ),functions,secant,sécante
+csc(θ),functions,cosecant,cosecant
+arcsin(θ),functions,arcsine,arcsinus
+arccos(θ),functions,arccosine,arccosinus
+arctan(θ),functions,arctangent,arctangente
+arccot(θ),functions,arccotangent,arccotangente
+arcsec(θ),functions,arcsecant,arcsécante
+arccsc(θ),functions,arccosecant,arccosécante
+sinh(θ),functions,hyperbolic sine,sinus hyperbolique
+cosh(θ),functions,hyperbolic cosine,cosinus hyperbolique
+tanh(θ),functions,hyperbolic tangent,tangente hyperbolique
+coth(θ),functions,hyperbolic cotangent,cotangente hyperbolique
+sech(θ),functions,hyperbolic secant,sécante hyperbolique
 csch(θ),functions,hyperbolic cosecant,cosécante hyperbolique
 arcsinh(θ),functions,hyperbolic arcsine,arcsinus hyperbolique
 arccosh(θ),functions,hyperbolic arccosine,arccosinus hyperbolique
@@ -272,10 +272,10 @@ E[X],functions,expectation,espérance
 Var(X),theorems,variance,variance
 "Cov(X,Y)",theorems,covariance,covariance
 φ(n),theorems,euler totient function,fonction indicatrice d'euler
-μ(n),theorems,möbius function,fonction de möbius
+μ(n),theorems,mobius function,fonction de möbius
 λ(n),theorems,carmichael function,fonction de carmichael
-ω(n),theorems,no of prime factors(distinct),nombre de facteurs premiers (distincts)
-Ω(n),theorems,no of prime factors,nombre de facteurs premiers
+ω(n),theorems,number of prime factors,nombre de facteurs premiers
+Ω(n),theorems,number of prime factors,nombre de facteurs premiers
 Ai(x),symbols,airy function,fonction d'airy
 Bi(x),symbols,bairy function,fonction de bairy
 erf(x),symbols,error function,fonction d'erreur
@@ -393,7 +393,7 @@ liminf,functions,limit inferior,limite inférieure
 ⇐,sequence,reverse implication,implication inverse
 ≔,symbols,defined as,défini comme
 ≜,symbols,definition symbol,symbole de définition
-◇,symbols,possibility (modal logic),possibilité (logique modale)
+◇,symbols,possibility,possibilité
 ≡,symbols,identical to,indentique à
 ≃,symbols,homotopy equivalent,homotopiquement équivalent
 ≇,symbols,not isomorphic,non isomorphe
@@ -441,7 +441,7 @@ liminf,functions,limit inferior,limite inférieure
 𝓒,sets,continuous function set,ensemble des fonctions continues
 𝓢,sets,schwartz space,espace de schwartz
 𝓓,sets,test function space,espace des fonctions test
-𝓓′,sets,distributions (generalized functions),distributions (fonctions généralisées)
+𝓓′,sets,distributions,distributions
 𝓛²,sets,square integrable functions,fondamental de l'espace l au carré
 "⟨f,g⟩",functions,inner product on l squared,produit intérieur sur l au carré
 ℒⁿ,functions,lebesgue measure,mesure de lebesgue
