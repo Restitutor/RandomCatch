@@ -36,7 +36,7 @@ class InventoryCog(commands.Cog):
         self.bot = bot
 
     async def _resolve_user(
-        self, ctx: commands.Context, user: discord.User | None
+        self, ctx: commands.Context, user: discord.User | None,
     ) -> discord.User | None:
         """Resolve user and validate it's not a bot. Returns None if bot."""
         if user is None:
@@ -82,7 +82,7 @@ class InventoryCog(commands.Cog):
 
     @inventory.error
     async def inventory_error(
-        self, ctx: commands.Context, error: commands.CommandError
+        self, ctx: commands.Context, error: commands.CommandError,
     ) -> None:
         if isinstance(error, commands.BadLiteralArgument) and error.param.name == "category":
             valid = ", ".join(f"`{v}`" for v in error.literals)

@@ -1,10 +1,38 @@
 [project]
 name = "RandomCatch"
-version = "2.0"
+version = "2.1"
 description = "A Discord bot that allows users to catch math objects that randomly appear in designated channels."
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = [
-    "aiosqlite>=0.21.0",
-    "discord.py>=2.6.0",
+dependencies = ["aiosqlite>=0.22.1", "discord-py>=2.7.1"]
+
+[tool.ruff]
+line-length = 130
+indent-width = 4
+target-version = "py313"
+
+[tool.ruff.lint]
+# Require explicit selection of preview rules.
+explicit-preview-rules = true
+select = ["ALL"]
+extend-select = ["ALL"]
+extend-safe-fixes = ["ALL"]
+extend-ignore = [
+    "C901",
+    "T",      # ignore print
+    "S101",   # allow assert
+    "S311",   # allow non-crypto random
+    "INP001", # implicit namespace
+    "D",      # Missing Docstring
+    "FBT",    # boolean-default-value-positional-argument
+    "PLR",    # Magic numbers
+    "TRY301", # Abstract `raise` to an inner function
 ]
+preview = true
+
+[tool.ty.rules]
+unresolved-import = "ignore"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"

@@ -54,8 +54,9 @@ class ProbabilitySpawn:
 
     def __post_init__(self) -> None:
         if not (0.0 < self.probability <= 1.0):
+            msg = f"Probability must be in (0.0, 1.0], got {self.probability}"
             raise ValueError(
-                f"Probability must be in (0.0, 1.0], got {self.probability}",
+                msg,
             )
 
 
@@ -67,7 +68,8 @@ class IntervalSpawn:
 
     def __post_init__(self) -> None:
         if not (1 <= self.interval <= 604800):
-            raise ValueError(f"Interval must be in [1, 604800], got {self.interval}")
+            msg = f"Interval must be in [1, 604800], got {self.interval}"
+            raise ValueError(msg)
 
 
 @dataclass(frozen=True, slots=True)
@@ -79,11 +81,13 @@ class HybridSpawn:
 
     def __post_init__(self) -> None:
         if not (0.0 < self.probability <= 1.0):
+            msg = f"Probability must be in (0.0, 1.0], got {self.probability}"
             raise ValueError(
-                f"Probability must be in (0.0, 1.0], got {self.probability}",
+                msg,
             )
         if not (1 <= self.interval <= 604800):
-            raise ValueError(f"Interval must be in [1, 604800], got {self.interval}")
+            msg = f"Interval must be in [1, 604800], got {self.interval}"
+            raise ValueError(msg)
 
 
 type SpawnMode = ProbabilitySpawn | IntervalSpawn | HybridSpawn

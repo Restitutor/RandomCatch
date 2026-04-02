@@ -20,7 +20,7 @@ from utils import load_json, restart_program, run_git_pull, save_json
 class Permissions:
     """Cached permission checker. Loaded from roles.json at init."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.reload()
 
     def reload(self) -> None:
@@ -38,13 +38,11 @@ class Permissions:
             return True
         if user_id in self._global_admins:
             return True
-        if member and member.guild_permissions.administrator:
-            return True
-        return False
+        return bool(member and member.guild_permissions.administrator)
 
 
 class SpawnRules(commands.GroupCog, group_name="spawnrules"):
-    def __init__(self, bot: commands.Bot):
+    def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
         self.perms = Permissions()
 
@@ -52,7 +50,8 @@ class SpawnRules(commands.GroupCog, group_name="spawnrules"):
         return self.bot.get_cog("CatchingCog")
 
     async def _require_admin_and_catching(
-        self, interaction: discord.Interaction,
+        self,
+        interaction: discord.Interaction,
     ) -> tuple[bool, object]:
         if not self.perms.is_admin(interaction.user.id, interaction.user):
             await interaction.response.send_message("Not authorized.", ephemeral=True)
@@ -60,7 +59,8 @@ class SpawnRules(commands.GroupCog, group_name="spawnrules"):
         catching = self._get_catching_cog()
         if catching is None:
             await interaction.response.send_message(
-                "CatchingCog is not loaded.", ephemeral=True,
+                "CatchingCog is not loaded.",
+                ephemeral=True,
             )
             return (False, None)
         return (True, catching)
@@ -71,7 +71,7 @@ class SpawnRules(commands.GroupCog, group_name="spawnrules"):
         interaction: discord.Interaction,
         channel: discord.TextChannel,
         value: float,
-    ):
+    ) -> None:
         ok, catching = await self._require_admin_and_catching(interaction)
         if not ok:
             return
@@ -95,7 +95,8 @@ class SpawnRules(commands.GroupCog, group_name="spawnrules"):
                     )
                 case HybridSpawn(interval=i):
                     catching._rules[channel.id] = replace(
-                        existing, mode=IntervalSpawn(interval=i),
+                        existing,
+                        mode=IntervalSpawn(interval=i),
                     )
                     catching._save_rules()
                     await interaction.response.send_message(
@@ -110,7 +111,8 @@ class SpawnRules(commands.GroupCog, group_name="spawnrules"):
         else:
             if value > 1.0:
                 await interaction.response.send_message(
-                    "Probability must be in (0, 1].", ephemeral=True,
+                    "Probability must be in (0, 1].",
+                    ephemeral=True,
                 )
                 return
             if existing is not None:
@@ -137,7 +139,7 @@ class SpawnRules(commands.GroupCog, group_name="spawnrules"):
         interaction: discord.Interaction,
         channel: discord.TextChannel,
         seconds: int,
-    ):
+    ) -> None:
         ok, catching = await self._require_admin_and_catching(interaction)
         if not ok:
             return
@@ -163,7 +165,8 @@ class SpawnRules(commands.GroupCog, group_name="spawnrules"):
                     )
                 case HybridSpawn(probability=p):
                     catching._rules[channel.id] = replace(
-                        existing, mode=ProbabilitySpawn(probability=p),
+                        existing,
+                        mode=ProbabilitySpawn(probability=p),
                     )
                     catching._last_spawn.pop(channel.id, None)
                     catching._save_rules()
@@ -180,7 +183,8 @@ class SpawnRules(commands.GroupCog, group_name="spawnrules"):
         else:
             if seconds > 604800:
                 await interaction.response.send_message(
-                    "Interval must be in [1, 604800].", ephemeral=True,
+                    "Interval must be in [1, 604800].",
+                    ephemeral=True,
                 )
                 return
             if existing is not None:
@@ -206,7 +210,7 @@ class SpawnRules(commands.GroupCog, group_name="spawnrules"):
         self,
         interaction: discord.Interaction,
         channel: discord.TextChannel = None,
-    ):
+    ) -> None:
         ok, catching = await self._require_admin_and_catching(interaction)
         if not ok:
             return
@@ -260,7 +264,7 @@ class SpawnRules(commands.GroupCog, group_name="spawnrules"):
         self,
         interaction: discord.Interaction,
         channel: discord.TextChannel,
-    ):
+    ) -> None:
         ok, catching = await self._require_admin_and_catching(interaction)
         if not ok:
             return
@@ -281,7 +285,7 @@ class SpawnRules(commands.GroupCog, group_name="spawnrules"):
         )
 
     @app_commands.command(description="Show spawn timer status")
-    async def status(self, interaction: discord.Interaction):
+    async def status(self, interaction: discord.Interaction) -> None:
         ok, catching = await self._require_admin_and_catching(interaction)
         if not ok:
             return
@@ -315,7 +319,7 @@ class SpawnRules(commands.GroupCog, group_name="spawnrules"):
 
 
 class RoleCog(commands.GroupCog, group_name="role"):
-    def __init__(self, bot: commands.Bot):
+    def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
         self.perms = Permissions()
 
@@ -331,10 +335,11 @@ class RoleCog(commands.GroupCog, group_name="role"):
         interaction: discord.Interaction,
         role: Literal["owner", "global_admin"],
         user: discord.User,
-    ):
+    ) -> None:
         if not self.perms.is_owner(interaction.user.id):
             await interaction.response.send_message(
-                "Only bot owners can manage roles.", ephemeral=True,
+                "Only bot owners can manage roles.",
+                ephemeral=True,
             )
             return
 
@@ -361,10 +366,11 @@ class RoleCog(commands.GroupCog, group_name="role"):
         interaction: discord.Interaction,
         role: Literal["owner", "global_admin"],
         user: discord.User,
-    ):
+    ) -> None:
         if not self.perms.is_owner(interaction.user.id):
             await interaction.response.send_message(
-                "Only bot owners can manage roles.", ephemeral=True,
+                "Only bot owners can manage roles.",
+                ephemeral=True,
             )
             return
 
@@ -388,10 +394,11 @@ class RoleCog(commands.GroupCog, group_name="role"):
         )
 
     @app_commands.command(name="list", description="List all roles")
-    async def list_roles(self, interaction: discord.Interaction):
+    async def list_roles(self, interaction: discord.Interaction) -> None:
         if not self.perms.is_owner(interaction.user.id):
             await interaction.response.send_message(
-                "Only bot owners can view roles.", ephemeral=True,
+                "Only bot owners can view roles.",
+                ephemeral=True,
             )
             return
 
@@ -420,10 +427,11 @@ class RoleCog(commands.GroupCog, group_name="role"):
         await interaction.response.send_message(embed=embed)
 
     @app_commands.command(description="Reset all roles")
-    async def reset(self, interaction: discord.Interaction):
+    async def reset(self, interaction: discord.Interaction) -> None:
         if not self.perms.is_owner(interaction.user.id):
             await interaction.response.send_message(
-                "Only bot owners can reset roles.", ephemeral=True,
+                "Only bot owners can reset roles.",
+                ephemeral=True,
             )
             return
 
@@ -435,12 +443,12 @@ class RoleCog(commands.GroupCog, group_name="role"):
 
 
 class AdminCog(commands.Cog):
-    def __init__(self, bot: commands.Bot):
+    def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
         self.perms = Permissions()
 
     @commands.hybrid_command(description="Update bot from git and restart")
-    async def updatebot(self, ctx: commands.Context):
+    async def updatebot(self, ctx: commands.Context) -> None:
         if not self.perms.is_owner(ctx.author.id):
             await ctx.send("Only bot owners can update the bot.")
             return
@@ -449,7 +457,10 @@ class AdminCog(commands.Cog):
         restart_program()
 
 
-async def setup(bot: commands.Bot):
-    await bot.add_cog(SpawnRules(bot))
-    await bot.add_cog(RoleCog(bot))
-    await bot.add_cog(AdminCog(bot))
+async def setup(bot: commands.Bot) -> None:
+    for cog in [SpawnRules(bot), RoleCog(bot), AdminCog(bot)]:
+        try:
+            await bot.add_cog(cog)
+            print(f"Loaded cog: {cog.__class__.__name__}")
+        except Exception as e:
+            print(f"FAILED to load {cog.__class__.__name__}: {e}")

@@ -30,7 +30,8 @@ def _parse_mode(info: dict) -> ProbabilitySpawn | IntervalSpawn | HybridSpawn:
         return ProbabilitySpawn(probability=prob)
     if has_interval:
         return IntervalSpawn(interval=interval)
-    raise ValueError(f"Invalid spawn rule: probability={prob}, interval={interval}")
+    msg = f"Invalid spawn rule: probability={prob}, interval={interval}"
+    raise ValueError(msg)
 
 
 def _serialize_mode(mode: ProbabilitySpawn | IntervalSpawn | HybridSpawn) -> dict:
@@ -60,14 +61,14 @@ class CatchingCog(commands.Cog):
             rules_raw = data["rules"]
         # Try intermediate format: {channel_id: {...}} directly
         elif isinstance(data, dict) and data and all(
-            isinstance(k, str) and k.isdigit() for k in data.keys()
+            isinstance(k, str) and k.isdigit() for k in data
         ):
             rules_raw = data
         else:
             # Old format (nested by guild) or unrecognized—skip
             logger.warning(
                 "Could not parse spawn_rules.json; skipping rules. "
-                "Format may be from an older version."
+                "Format may be from an older version.",
             )
             return
 
@@ -80,7 +81,7 @@ class CatchingCog(commands.Cog):
                 mode = _parse_mode(info)
             except (ValueError, TypeError) as e:
                 logger.warning(
-                    "Skipping invalid spawn rule for channel %s: %s", cid_str, e
+                    "Skipping invalid spawn rule for channel %s: %s", cid_str, e,
                 )
                 continue
             self._rules[cid] = SpawnRule(
@@ -132,10 +133,10 @@ class CatchingCog(commands.Cog):
         if isinstance(result, FailedCatch):
             await message.reply("That is not the right name..")
             return
-        elif result is not None:
+        if result is not None:
             await self.bot.db.add_item(message.author.id, result.item.key)
             await message.reply(
-                f"Caught {result.item.key} -> {result.matched_name}"
+                f"Caught {result.item.key} -> {result.matched_name}",
             )
             return  # no spawn on the same message that catches
 
@@ -173,9 +174,9 @@ class CatchingCog(commands.Cog):
                         if channel is None:
                             channel = await self.bot.fetch_channel(rule.channel_id)
                         item = self.bot.game.drop_random(rule.channel_id)
-                        await channel.send(self._drop_message(item))
                         self._last_spawn[rule.channel_id] = now
                         self._save_last_spawn()
+                        await channel.send(self._drop_message(item))
                     except Exception:
                         logger.exception(
                             "Timed drop failed for channel %s", rule.channel_id,

@@ -1,25 +1,28 @@
 import csv
 import os
+import pathlib
 import tempfile
 import unittest
+
+import pytest
 
 from items import load_items
 
 
 class TestLoadItems(unittest.TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         self.tmpdir = tempfile.mkdtemp()
 
     def _write_csv(self, header, rows):
         path = os.path.join(self.tmpdir, "test.csv")
-        with open(path, "w", newline="", encoding="utf-8") as f:
+        with pathlib.Path(path).open("w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
             writer.writerow(header)
             for row in rows:
                 writer.writerow(row)
         return path
 
-    def test_load_basic(self):
+    def test_load_basic(self) -> None:
         path = self._write_csv(
             ["key", "category", "en", "fr"],
             [
@@ -29,34 +32,34 @@ class TestLoadItems(unittest.TestCase):
             ],
         )
         items = load_items(path)
-        self.assertEqual(len(items), 3)
-        self.assertEqual(items["a"].names["en"], "alpha")
-        self.assertEqual(items["b"].category, "functions")
-        self.assertEqual(items["c"].names["fr"], "gamma_fr")
+        assert len(items) == 3
+        assert items["a"].names["en"] == "alpha"
+        assert items["b"].category == "functions"
+        assert items["c"].names["fr"] == "gamma_fr"
 
-    def test_missing_lang_skipped(self):
+    def test_missing_lang_skipped(self) -> None:
         path = self._write_csv(
             ["key", "category", "en", "fr"],
             [["a", "functions", "alpha", ""]],
         )
         items = load_items(path)
-        self.assertIn("en", items["a"].names)
-        self.assertNotIn("fr", items["a"].names)
+        assert "en" in items["a"].names
+        assert "fr" not in items["a"].names
 
-    def test_auto_discovers_languages(self):
+    def test_auto_discovers_languages(self) -> None:
         path = self._write_csv(
             ["key", "category", "en", "fr", "de"],
             [["a", "constants", "alpha", "alpha_fr", "alpha_de"]],
         )
         items = load_items(path)
-        self.assertEqual(set(items["a"].names.keys()), {"en", "fr", "de"})
+        assert set(items["a"].names.keys()) == {"en", "fr", "de"}
 
-    def test_invalid_category_rejected(self):
+    def test_invalid_category_rejected(self) -> None:
         path = self._write_csv(
             ["key", "category", "en"],
             [["a", "bogus", "alpha"]],
         )
-        with self.assertRaises(ValueError):
+        with pytest.raises(ValueError):
             load_items(path)
 
 

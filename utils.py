@@ -1,7 +1,9 @@
 import asyncio
+import contextlib
 import json
 import logging
 import os
+import pathlib
 import sys
 import tempfile
 from typing import overload
@@ -16,7 +18,7 @@ logger = logging.getLogger("discord_bot")
 
 def restart_program() -> None:
     logger.info("Restarting the program...")
-    os.execv(sys.executable, [sys.executable] + sys.argv)
+    os.execv(sys.executable, [sys.executable, *sys.argv])
 
 
 async def run_git_pull() -> str:
@@ -31,7 +33,7 @@ async def run_git_pull() -> str:
     if stderr:
         logger.error(f"Git pull error: {stderr.decode().strip()}")
     output = stdout.decode().strip()
-    logger.info(f"Git pull output: {output}")
+    logger.info("Git pull output: %s", output)
     return output
 
 
@@ -43,16 +45,18 @@ def load_json(filepath: str, default: dict) -> dict: ...
 def load_json(filepath: str, default: list) -> list: ...
 
 
-def load_json(filepath: str, default: dict | list = {}) -> dict | list:
+def load_json(filepath: str, default: dict | list | None = None) -> dict | list:
+    if default is None:
+        default = {}
     try:
-        with open(filepath, encoding="utf-8") as f:
+        with pathlib.Path(filepath).open(encoding="utf-8") as f:
             return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         return default
 
 
 def save_json(filepath: str, data: dict | list) -> None:
-    dirpath = os.path.dirname(os.path.abspath(filepath)) or "."
+    dirpath = pathlib.Path(pathlib.Path(filepath).resolve()).parent or "."
     tempname = None
     try:
         with tempfile.NamedTemporaryFile(
@@ -62,12 +66,10 @@ def save_json(filepath: str, data: dict | list) -> None:
             tf.flush()
             os.fsync(tf.fileno())  # Ensure data is written to disk
             tempname = tf.name
-        os.replace(tempname, filepath)
+        pathlib.Path(tempname).replace(filepath)
     except Exception:
         logger.exception("Failed to save JSON to %s", filepath)
         if tempname:
-            try:
-                os.unlink(tempname)
-            except OSError:
-                pass
+            with contextlib.suppress(OSError):
+                pathlib.Path(tempname).unlink()
         raise
